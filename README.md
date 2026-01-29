@@ -104,15 +104,3 @@ To ensure reliability, the sender waits for an ACK packet after every transmissi
     ```
 3.  **Configure Node ID:** Set the local address and destination address in the GUI settings.
 4.  **Start Messaging:** Type a message and hit send!
-
----
-
-## 🖼️ Gallery
-
-### GUI Interface
-![GUI Screenshot](images/gui_screenshot.png)
-*(Placeholder: Upload your GUI screenshot to an 'images' folder and link it here)*
-
-### GNU Radio Flowgraph
-![Flowgraph](images/flowgraph_screenshot.png)
-*(Placeholder: Upload your GRC flowgraph image here)*
