@@ -93,14 +93,3 @@ To ensure reliability, the sender waits for an ACK packet after every transmissi
     * `PyQt5` (for the GUI)
     * `pycryptodome` (for AES Encryption)
 
----
-
-## 🏃 Usage
-
-1.  **Connect the BladeRF** to your USB 3.0 port.
-2.  **Open the project:**
-    ```bash
-    python3 CDP_gui.py
-    ```
-3.  **Configure Node ID:** Set the local address and destination address in the GUI settings.
-4.  **Start Messaging:** Type a message and hit send!
