@@ -1,0 +1,2412 @@
+options:
+  parameters:
+    author: Lenovo
+    catch_exceptions: 'True'
+    category: '[GRC Hier Blocks]'
+    cmake_opt: ''
+    comment: ''
+    copyright: ''
+    description: ''
+    gen_cmake: 'On'
+    gen_linking: dynamic
+    generate_options: qt_gui
+    hier_block_src_path: '.:'
+    id: user2_1
+    max_nouts: '0'
+    output_language: python
+    placement: (0,0)
+    qt_qss_theme: ''
+    realtime_scheduling: ''
+    run: 'True'
+    run_command: '{python} -u {filename}'
+    run_options: prompt
+    sizing_mode: fixed
+    thread_safe_setters: ''
+    title: Not titled yet
+    window_size: (1000,1000)
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [8, 8]
+    rotation: 0
+    state: enabled
+
+blocks:
+- name: access_key
+  id: variable
+  parameters:
+    comment: ''
+    value: '''1110000101011010111010001001001111100001010110101110100010010011'''
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [360, 128.0]
+    rotation: 0
+    state: enabled
+- name: aes_key
+  id: variable
+  parameters:
+    comment: ''
+    value: '''9F3C7A12D4E8B5C1A0F2D39B7E5648AF'''
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [360, 224.0]
+    rotation: 0
+    state: enabled
+- name: excess_bw
+  id: variable
+  parameters:
+    comment: ''
+    value: '0.5'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [888, 16.0]
+    rotation: 0
+    state: enabled
+- name: hdr_format
+  id: variable
+  parameters:
+    comment: header_format_crc
+    value: digital.header_format_default(access_key, 0)
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [352, 16.0]
+    rotation: 0
+    state: enabled
+- name: nfilts
+  id: variable
+  parameters:
+    comment: ''
+    value: '32'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1000, 16.0]
+    rotation: 0
+    state: enabled
+- name: phase_bw
+  id: variable
+  parameters:
+    comment: ''
+    value: '0.0628'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [776, 16.0]
+    rotation: 0
+    state: true
+- name: qpsk
+  id: variable_constellation_rect
+  parameters:
+    comment: ''
+    const_points: '[0.707+0.707j, -0.707+0.707j, -0.707-0.707j, 0.707-0.707j]'
+    imag_sect: '2'
+    precision: '8'
+    real_sect: '2'
+    rot_sym: '4'
+    soft_dec_lut: None
+    sym_map: '[0, 1, 2, 3]'
+    w_imag_sect: '1'
+    w_real_sect: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [568, 0.0]
+    rotation: 0
+    state: enabled
+- name: rrc_taps
+  id: variable
+  parameters:
+    comment: ''
+    value: firdes.root_raised_cosine(nfilts, nfilts, 1.0/float(sps), 0.35, 11*sps*nfilts)
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [776, 112.0]
+    rotation: 0
+    state: enabled
+- name: samp_rate
+  id: variable
+  parameters:
+    comment: ''
+    value: 600e3
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [232, 16.0]
+    rotation: 0
+    state: enabled
+- name: sps
+  id: variable
+  parameters:
+    comment: ''
+    value: '4'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [232, 192.0]
+    rotation: 0
+    state: enabled
+- name: sps_0
+  id: variable
+  parameters:
+    comment: ''
+    value: '4'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [232, 96.0]
+    rotation: 0
+    state: enabled
+- name: variable_adaptive_algorithm_0
+  id: variable_adaptive_algorithm
+  parameters:
+    comment: ''
+    cons: qpsk
+    delta: '10.0'
+    ffactor: '0.99'
+    modulus: '4'
+    step_size: '.0001'
+    type: cma
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [776, 192.0]
+    rotation: 0
+    state: true
+- name: blocks_char_to_float_0_0
+  id: blocks_char_to_float
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    scale: '1'
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [2688, 2112.0]
+    rotation: 0
+    state: enabled
+- name: blocks_message_debug_0
+  id: blocks_message_debug
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    en_uvec: 'True'
+    log_level: info
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [864, 2592.0]
+    rotation: 0
+    state: enabled
+- name: blocks_multiply_const_vxx_0
+  id: blocks_multiply_const_vxx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    const: '0.8'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [616, 1064.0]
+    rotation: 0
+    state: enabled
+- name: blocks_repack_bits_bb_0_0
+  id: blocks_repack_bits_bb
+  parameters:
+    affinity: ''
+    alias: ''
+    align_output: 'False'
+    comment: ''
+    endianness: gr.GR_MSB_FIRST
+    k: '1'
+    l: '8'
+    len_tag_key: '"packet_len"'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [3072, 2240.0]
+    rotation: 0
+    state: enabled
+- name: blocks_tagged_stream_mux_0
+  id: blocks_tagged_stream_mux
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    lengthtagname: packet_len
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    ninputs: '2'
+    tag_preserve_head_pos: '0'
+    type: byte
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1704, 496.0]
+    rotation: 0
+    state: enabled
+- name: blocks_throttle2_1
+  id: blocks_throttle2
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    ignoretag: 'True'
+    limit: auto
+    maximum: '0.1'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    samples_per_second: samp_rate
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [792, 1088.0]
+    rotation: 0
+    state: enabled
+- name: blocks_unpack_k_bits_bb_0_0
+  id: blocks_unpack_k_bits_bb
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    k: '2'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [2592, 2232.0]
+    rotation: 0
+    state: enabled
+- name: digital_constellation_decoder_cb_0_0
+  id: digital_constellation_decoder_cb
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    constellation: qpsk
+    maxoutbuf: '0'
+    minoutbuf: '0'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1584, 2232.0]
+    rotation: 0
+    state: enabled
+- name: digital_constellation_modulator_0
+  id: digital_constellation_modulator
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    constellation: qpsk
+    differential: 'True'
+    excess_bw: '0.5'
+    log: 'False'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    samples_per_symbol: '4'
+    truncate: 'False'
+    verbose: 'False'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [296, 1040.0]
+    rotation: 0
+    state: enabled
+- name: digital_correlate_access_code_xx_ts_0_0
+  id: digital_correlate_access_code_xx_ts
+  parameters:
+    access_code: access_key
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    tagname: packet_len
+    threshold: '2'
+    type: byte
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [2744, 2208.0]
+    rotation: 0
+    state: enabled
+- name: digital_costas_loop_cc_0_0
+  id: digital_costas_loop_cc
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    order: '4'
+    use_snr: 'False'
+    w: phase_bw
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1312, 2224.0]
+    rotation: 0
+    state: enabled
+- name: digital_crc_append_0
+  id: digital_crc_append
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    final_xor: '0xFFFFFFFF'
+    initial_value: '0xFFFFFFFF'
+    input_reflected: 'True'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_bits: '32'
+    poly: '0x4C11DB7'
+    result_reflected: 'True'
+    skip_header_bytes: '0'
+    swap_endianness: 'False'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [568, 504.0]
+    rotation: 0
+    state: enabled
+- name: digital_crc_append_0_0
+  id: digital_crc_append
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    final_xor: '0xFFFFFFFF'
+    initial_value: '0xFFFFFFFF'
+    input_reflected: 'True'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_bits: '32'
+    poly: '0x4C11DB7'
+    result_reflected: 'True'
+    skip_header_bytes: '0'
+    swap_endianness: 'False'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [968, 1608.0]
+    rotation: 0
+    state: enabled
+- name: digital_diff_decoder_bb_0_0
+  id: digital_diff_decoder_bb
+  parameters:
+    affinity: ''
+    alias: ''
+    coding: digital.DIFF_DIFFERENTIAL
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    modulus: '4'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1848, 2224.0]
+    rotation: 0
+    state: enabled
+- name: digital_linear_equalizer_0_0
+  id: digital_linear_equalizer
+  parameters:
+    adapt_after_training: 'True'
+    affinity: ''
+    alg: variable_adaptive_algorithm_0
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_taps: '15'
+    sps: '2'
+    training_sequence: '[ ]'
+    training_start_tag: corr_est
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [712, 2176.0]
+    rotation: 0
+    state: enabled
+- name: digital_map_bb_0_0
+  id: digital_map_bb
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    map: '[0,1,2,3]'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [2080, 2232.0]
+    rotation: 0
+    state: enabled
+- name: digital_protocol_formatter_async_0
+  id: digital_protocol_formatter_async
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    format: hdr_format
+    maxoutbuf: '0'
+    minoutbuf: '0'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1112, 496.0]
+    rotation: 0
+    state: enabled
+- name: digital_symbol_sync_xx_0_0
+  id: digital_symbol_sync_xx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    constellation: digital.constellation_bpsk().base()
+    damping: '1.0'
+    loop_bw: phase_bw
+    max_dev: '1.5'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    nfilters: '128'
+    osps: '2'
+    pfb_mf_taps: '[]'
+    resamp_type: digital.IR_MMSE_8TAP
+    sps: sps
+    ted_gain: '1.0'
+    ted_type: digital.TED_SIGNAL_TIMES_SLOPE_ML
+    type: cc
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [304, 2176.0]
+    rotation: 0
+    state: enabled
+- name: epy_block_0_0
+  id: epy_block
+  parameters:
+    _source_code: "\"\"\"\nEmbedded Python Block: Add Preamble + Address + Type (DATA)\n\
+      \"\"\"\nfrom gnuradio import gr\nimport pmt\n\nclass add_address_block(gr.basic_block):\n\
+      \    \"\"\"\n    Adds [ PREAMBLE(32) | DEST(1) | TYPE(1) ] to payload.\n   \
+      \ TYPE = 0x01 (Data)\n    \"\"\"\n\n    def __init__(self):\n        gr.basic_block.__init__(\n\
+      \            self,\n            name=\"Add Preamble + Address\",\n         \
+      \   in_sig=None,\n            out_sig=None\n        )\n\n        # Initial Address\
+      \ (can be updated dynamically)\n        self.address = 0 & 0xFF\n\n        #\
+      \ Fixed 128-Byte Preamble\n        self.preamble = [\n            0xD3, 0x42,\
+      \ 0xA1, 0x7F, 0x9C, 0xE2, 0x55, 0xAA,\n            0x13, 0x87, 0x4E, 0xB1, 0x2C,\
+      \ 0xF0, 0x99, 0x6D,\n            0x3A, 0xC4, 0x1F, 0x82, 0x5B, 0xD8, 0x66, 0xE7,\n\
+      \            0x24, 0x91, 0x7C, 0x0B, 0x38, 0xF2, 0x4D, 0xC6,\n            0xD3,\
+      \ 0x42, 0xA1, 0x7F, 0x9C, 0xE2, 0x55, 0xAA,\n            0x13, 0x87, 0x4E, 0xB1,\
+      \ 0x2C, 0xF0, 0x99, 0x6D,\n            0x3A, 0xC4, 0x1F, 0x82, 0x5B, 0xD8, 0x66,\
+      \ 0xE7,\n            0x24, 0x91, 0x7C, 0x0B, 0x38, 0xF2, 0x4D, 0xC6,\n     \
+      \       0xD3, 0x42, 0xA1, 0x7F, 0x9C, 0xE2, 0x55, 0xAA,\n            0x13, 0x87,\
+      \ 0x4E, 0xB1, 0x2C, 0xF0, 0x99, 0x6D,\n            0x3A, 0xC4, 0x1F, 0x82, 0x5B,\
+      \ 0xD8, 0x66, 0xE7,\n            0x24, 0x91, 0x7C, 0x0B, 0x38, 0xF2, 0x4D, 0xC6,\n\
+      \            0xD3, 0x42, 0xA1, 0x7F, 0x9C, 0xE2, 0x55, 0xAA,\n            0x13,\
+      \ 0x87, 0x4E, 0xB1, 0x2C, 0xF0, 0x99, 0x6D,\n            0x3A, 0xC4, 0x1F, 0x82,\
+      \ 0x5B, 0xD8, 0x66, 0xE7,\n            0x24, 0x91, 0x7C, 0x0B, 0x38, 0xF2, 0x4D,\
+      \ 0xC6\n        ]\n\n        # Message ports\n        self.message_port_register_in(pmt.intern('in'))\n\
+      \        self.message_port_register_out(pmt.intern('out'))\n        self.message_port_register_in(pmt.intern('config'))\n\
+      \        \n        self.set_msg_handler(pmt.intern('in'), self.handle_msg)\n\
+      \        self.set_msg_handler(pmt.intern('config'), self.handle_config)\n\n\
+      \    def handle_config(self, msg):\n        if pmt.is_dict(msg) and pmt.dict_has_key(msg,\
+      \ pmt.intern(\"dest_addr\")):\n            new_addr = pmt.to_long(pmt.dict_ref(msg,\
+      \ pmt.intern(\"dest_addr\"), pmt.PMT_NIL))\n            self.address = new_addr\
+      \ & 0xFF\n\n    def handle_msg(self, pdu):\n        if not pmt.is_pair(pdu):\n\
+      \            return\n\n        meta = pmt.car(pdu)\n        payload = pmt.cdr(pdu)\n\
+      \n        if not pmt.is_u8vector(payload):\n            return\n\n        data\
+      \ = list(pmt.u8vector_elements(payload))\n\n        # --- MODIFIED HERE ---\n\
+      \        # Structure: [ PREAMBLE ] + [ DEST ] + [ TYPE=0x01 ] + [ DATA ]\n \
+      \       new_data = self.preamble + [self.address] + [0x01] + data\n\n      \
+      \  new_payload = pmt.init_u8vector(len(new_data), new_data)\n\n        # Update\
+      \ metadata\n        try:\n            meta = pmt.dict_add(meta, pmt.intern(\"\
+      dest_addr\"), pmt.from_long(self.address))\n        except:\n            pass\n\
+      \n        self.message_port_pub(pmt.intern('out'), pmt.cons(meta, new_payload))"
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+  states:
+    _io_cache: ('Add Preamble + Address', 'add_address_block', [], [('config', 'message',
+      1), ('in', 'message', 1)], [('out', 'message', 1)], '\n    Adds [ PREAMBLE(32)
+      | DEST(1) | TYPE(1) ] to payload.\n    TYPE = 0x01 (Data)\n    ', [])
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [872, 496.0]
+    rotation: 0
+    state: enabled
+- name: epy_block_0_1
+  id: epy_block
+  parameters:
+    _source_code: "\"\"\"\nEmbedded Python Block: WhatsApp GUI (Menu-Based Address\
+      \ Config + TXT Only)\n\"\"\"\n\nfrom gnuradio import gr\nfrom PyQt5 import QtWidgets,\
+      \ QtCore, QtGui\nimport sys\nimport pmt\nfrom datetime import datetime\nimport\
+      \ base64\nimport os\n\n# --- 1. VISUAL HELPERS & THEMES ---\n\nTHEMES = {\n\
+      \    \"light\": {\n        \"bg_color\": \"#E5DDD5\", \"top_bar\": \"#075E54\"\
+      , \"input_area\": \"#F0F0F0\",\n        \"input_box\": \"#FFFFFF\", \"text_primary\"\
+      : \"black\", \"bubble_own\": \"#DCF8C6\",\n        \"bubble_other\": \"#FFFFFF\"\
+      , \"time_color\": \"gray\", \"tick_color\": \"#4DF0F0\",\n        \"border\"\
+      : \"#dcdcdc\", \"dialog_bg\": \"#FFFFFF\"\n    },\n    \"dark\": {\n       \
+      \ \"bg_color\": \"#0b141a\", \"top_bar\": \"#202c33\", \"input_area\": \"#202c33\"\
+      ,\n        \"input_box\": \"#2a3942\", \"text_primary\": \"#e9edef\", \"bubble_own\"\
+      : \"#005c4b\",\n        \"bubble_other\": \"#202c33\", \"time_color\": \"#8696a0\"\
+      , \"tick_color\": \"#53bdeb\",\n        \"border\": \"#202c33\", \"dialog_bg\"\
+      : \"#2a3942\"\n    }\n}\n\nclass WallpaperScrollArea(QtWidgets.QScrollArea):\n\
+      \    def __init__(self, parent=None):\n        super().__init__(parent)\n  \
+      \      self.setWidgetResizable(True)\n        self.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)\n\
+      \nclass ConfigDialog(QtWidgets.QDialog):\n    \"\"\" Small popup to change Source\
+      \ and Dest IDs \"\"\"\n    def __init__(self, current_my, current_target, theme_name,\
+      \ parent=None):\n        super().__init__(parent)\n        self.setWindowTitle(\"\
+      Configure IDs\")\n        self.resize(300, 150)\n        self.theme = THEMES[theme_name]\n\
+      \        \n        # Layout\n        layout = QtWidgets.QVBoxLayout(self)\n\
+      \        \n        # Inputs\n        form_layout = QtWidgets.QFormLayout()\n\
+      \        self.my_input = QtWidgets.QLineEdit(str(current_my))\n        self.target_input\
+      \ = QtWidgets.QLineEdit(str(current_target))\n        \n        lbl_my = QtWidgets.QLabel(\"\
+      My ID (Source):\")\n        lbl_target = QtWidgets.QLabel(\"Target ID (Dest):\"\
+      )\n        \n        form_layout.addRow(lbl_my, self.my_input)\n        form_layout.addRow(lbl_target,\
+      \ self.target_input)\n        layout.addLayout(form_layout)\n        \n    \
+      \    # Buttons\n        btns = QtWidgets.QDialogButtonBox(QtWidgets.QDialogButtonBox.Ok\
+      \ | QtWidgets.QDialogButtonBox.Cancel)\n        btns.accepted.connect(self.accept)\n\
+      \        btns.rejected.connect(self.reject)\n        layout.addWidget(btns)\n\
+      \        \n        # Styling\n        self.setStyleSheet(f\"\"\"\n         \
+      \   QDialog {{ background-color: {self.theme['dialog_bg']}; color: {self.theme['text_primary']};\
+      \ }}\n            QLabel {{ color: {self.theme['text_primary']}; font-weight:\
+      \ bold; }}\n            QLineEdit {{ \n                background-color: {self.theme['input_box']};\
+      \ \n                color: {self.theme['text_primary']}; \n                border:\
+      \ 1px solid {self.theme['border']}; \n                padding: 5px; border-radius:\
+      \ 5px;\n            }}\n            QPushButton {{ \n                background-color:\
+      \ {self.theme['top_bar']}; \n                color: white; border: none; padding:\
+      \ 8px; border-radius: 4px;\n            }}\n        \"\"\")\n\n    def get_values(self):\n\
+      \        try:\n            m = int(self.my_input.text())\n            t = int(self.target_input.text())\n\
+      \            return m, t\n        except ValueError:\n            return None,\
+      \ None\n\nclass _GuiPoster(QtCore.QObject):\n    rx_sig = QtCore.pyqtSignal(str,\
+      \ int)     \n    ack_sig = QtCore.pyqtSignal()            \n    file_save_sig\
+      \ = QtCore.pyqtSignal(str, str) \n    def __init__(self): super().__init__()\n\
+      \n# --- 2. MAIN GUI WINDOW ---\n\nclass ChatWindow(QtWidgets.QWidget):\n   \
+      \ def __init__(self, send_callback, config_callback, payload_size=32, dest_name=\"\
+      Node A\"):\n        super(ChatWindow, self).__init__()\n        self.send_callback\
+      \ = send_callback\n        self.config_callback = config_callback\n        self.payload_size\
+      \ = payload_size\n        self.dest_name = dest_name\n        \n        # State\
+      \ tracking for IDs\n        self.my_id = 20       # Default\n        self.target_id\
+      \ = 15   # Default\n        \n        self.current_theme = \"light\" \n    \
+      \    self.chat_history = [] \n        self.pending_confirmations = []\n    \
+      \    self.bubble_widgets = [] \n\n        self.setWindowTitle(f\"SDR Chat -\
+      \ {self.dest_name}\")\n        self.resize(450, 750)\n        \n        self.main_layout\
+      \ = QtWidgets.QVBoxLayout(self)\n        self.main_layout.setContentsMargins(0,0,0,0)\n\
+      \        \n        # -- Top Bar --\n        self.top_bar = QtWidgets.QFrame()\n\
+      \        top_layout = QtWidgets.QHBoxLayout(self.top_bar)\n        top_layout.setContentsMargins(15,\
+      \ 10, 5, 10)\n        \n        self.header_label = QtWidgets.QLabel(f\"\U0001F464\
+      \ {self.dest_name}\")\n        self.header_label.setStyleSheet(\"font-size:\
+      \ 18px; font-weight: bold; color: white;\")\n        \n        # Dark Mode Toggle\n\
+      \        self.theme_btn = QtWidgets.QPushButton(\"\U0001F319\")\n        self.theme_btn.setFixedSize(35,\
+      \ 35)\n        self.theme_btn.setCursor(QtCore.Qt.PointingHandCursor)\n    \
+      \    self.theme_btn.clicked.connect(self.toggle_theme)\n        self.theme_btn.setStyleSheet(\"\
+      QPushButton { background-color: transparent; border: none; font-size: 18px;\
+      \ }\")\n\n        # Menu Button (Three Dots)\n        self.menu_btn = QtWidgets.QPushButton(\"\
+      \u22EE\")\n        self.menu_btn.setFixedSize(35, 35)\n        self.menu_btn.setCursor(QtCore.Qt.PointingHandCursor)\n\
+      \        self.menu_btn.setStyleSheet(\"\"\"\n            QPushButton { background-color:\
+      \ transparent; border: none; font-size: 24px; color: white; padding-bottom:\
+      \ 5px; }\n            QPushButton::menu-indicator { image: none; width: 0px;\
+      \ }\n        \"\"\")\n        \n        # --- MENU SETUP ---\n        self.menu\
+      \ = QtWidgets.QMenu()\n        \n        # 1. Configure IDs\n        self.config_action\
+      \ = self.menu.addAction(\"\u2699\uFE0F Configure IDs\")\n        self.config_action.triggered.connect(self.open_config_dialog)\n\
+      \        \n        self.menu.addSeparator()\n        \n        # 2. Other actions\n\
+      \        export_action = self.menu.addAction(\"Export Chat Log\")\n        clear_action\
+      \ = self.menu.addAction(\"Clear Chat\")\n        \n        export_action.triggered.connect(self.export_chat)\n\
+      \        clear_action.triggered.connect(self.clear_chat)\n        \n       \
+      \ self.menu_btn.setMenu(self.menu)\n        # ------------------\n\n       \
+      \ top_layout.addWidget(self.header_label)\n        top_layout.addStretch()\n\
+      \        top_layout.addWidget(self.theme_btn)\n        top_layout.addWidget(self.menu_btn)\n\
+      \        self.main_layout.addWidget(self.top_bar)\n\n        # -- Chat Area\
+      \ --\n        self.scroll_area = WallpaperScrollArea() \n        self.chat_container\
+      \ = QtWidgets.QWidget()\n        self.chat_container.setStyleSheet(\"background:\
+      \ transparent;\")\n        self.chat_layout = QtWidgets.QVBoxLayout(self.chat_container)\n\
+      \        self.chat_layout.setAlignment(QtCore.Qt.AlignTop)\n        self.chat_layout.setSpacing(8)\n\
+      \        self.chat_layout.setContentsMargins(15, 15, 15, 15)\n        self.scroll_area.setWidget(self.chat_container)\n\
+      \        self.main_layout.addWidget(self.scroll_area)\n\n        # -- Input\
+      \ Area --\n        self.input_frame = QtWidgets.QFrame()\n        input_layout\
+      \ = QtWidgets.QHBoxLayout(self.input_frame)\n        input_layout.setContentsMargins(10,\
+      \ 10, 10, 10)\n        \n        self.emoji_btn = QtWidgets.QPushButton(\"\U0001F60A\
+      \")\n        self.emoji_btn.setFixedSize(40, 40)\n        self.emoji_btn.setCursor(QtCore.Qt.PointingHandCursor)\n\
+      \        self.emoji_btn.setStyleSheet(\"\"\"QPushButton { border: none; font-size:\
+      \ 20px; } QPushButton::menu-indicator { image: none; width: 0px; }\"\"\")\n\
+      \        \n        self.emoji_menu = QtWidgets.QMenu()\n        emojis = [\"\
+      \U0001F600\", \"\U0001F602\", \"\U0001F44D\", \"\u2764\uFE0F\", \"\U0001F4FB\
+      \", \"\U0001F6F0\uFE0F\", \"\U0001F44B\", \"\u2705\", \"\u26A0\uFE0F\", \"\U0001F525\
+      \"]\n        for e in emojis:\n            action = self.emoji_menu.addAction(e)\n\
+      \            action.triggered.connect(lambda checked, emo=e: self.input_box.insert(emo))\n\
+      \        self.emoji_btn.setMenu(self.emoji_menu)\n\n        self.file_btn =\
+      \ QtWidgets.QPushButton(\"\U0001F4CE\")\n        self.file_btn.setFixedSize(40,\
+      \ 40)\n        self.file_btn.setCursor(QtCore.Qt.PointingHandCursor)\n     \
+      \   self.file_btn.setStyleSheet(\"border: none; font-size: 20px;\")\n      \
+      \  self.file_btn.clicked.connect(self.handle_file_click)\n        \n       \
+      \ self.input_box = QtWidgets.QLineEdit()\n        self.input_box.setPlaceholderText(\"\
+      Type a message...\")\n        self.input_box.returnPressed.connect(self.handle_send_click)\n\
+      \        \n        self.send_btn = QtWidgets.QPushButton(\"\u27A4\")\n     \
+      \   self.send_btn.setFixedSize(45, 45)\n        self.send_btn.setCursor(QtCore.Qt.PointingHandCursor)\n\
+      \        self.send_btn.setStyleSheet(\"\"\"\n            QPushButton { background-color:\
+      \ #128C7E; color: white; border-radius: 22px; font-size: 18px; border: none;\
+      \ }\n            QPushButton:hover { background-color: #075E54; }\n        \"\
+      \"\")\n        self.send_btn.clicked.connect(self.handle_send_click)\n\n   \
+      \     input_layout.addWidget(self.emoji_btn)\n        input_layout.addWidget(self.file_btn)\n\
+      \        input_layout.addWidget(self.input_box)\n        input_layout.addWidget(self.send_btn)\n\
+      \        self.main_layout.addWidget(self.input_frame)\n\n        self.apply_theme()\n\
+      \n    def open_config_dialog(self):\n        \"\"\" Opens the dialog to change\
+      \ IDs via the menu \"\"\"\n        dlg = ConfigDialog(self.my_id, self.target_id,\
+      \ self.current_theme, self)\n        if dlg.exec_() == QtWidgets.QDialog.Accepted:\n\
+      \            new_my, new_target = dlg.get_values()\n            if new_my is\
+      \ not None and new_target is not None:\n                self.update_ids(new_my,\
+      \ new_target)\n\n    def update_ids(self, my_id, target_id):\n        self.my_id\
+      \ = my_id\n        self.target_id = target_id\n        \n        # Create PMT\
+      \ dict for config\n        cfg = pmt.make_dict()\n        cfg = pmt.dict_add(cfg,\
+      \ pmt.intern(\"my_addr\"), pmt.from_long(my_id))\n        cfg = pmt.dict_add(cfg,\
+      \ pmt.intern(\"dest_addr\"), pmt.from_long(target_id))\n        \n        #\
+      \ Send config to blocks\n        self.config_callback(cfg)\n        \n     \
+      \   # Update UI\n        self.dest_name = f\"Node {target_id}\"\n        self.header_label.setText(f\"\
+      \U0001F464 {self.dest_name}\")\n        self._add_bubble(f\"\U0001F501 System:\
+      \ Updated IDs.\\nMy ID: {my_id}\\nTarget ID: {target_id}\", True, \"SYS\")\n\
+      \n    def toggle_theme(self):\n        self.current_theme = \"dark\" if self.current_theme\
+      \ == \"light\" else \"light\"\n        self.theme_btn.setText(\"\u2600\uFE0F\
+      \" if self.current_theme == \"dark\" else \"\U0001F319\")\n        self.apply_theme()\n\
+      \n    def apply_theme(self):\n        t = THEMES[self.current_theme]\n     \
+      \   self.setStyleSheet(f\"QWidget {{ font-family: 'Segoe UI', sans-serif; color:\
+      \ {t['text_primary']}; }}\")\n        self.top_bar.setStyleSheet(f\"background-color:\
+      \ {t['top_bar']}; border: none;\")\n        self.scroll_area.setStyleSheet(f\"\
+      border: none; background-color: {t['bg_color']};\")\n        self.input_frame.setStyleSheet(f\"\
+      background-color: {t['input_area']}; border-top: 1px solid {t['border']};\"\
+      )\n        self.input_box.setStyleSheet(f\"\"\"\n            QLineEdit {{ background-color:\
+      \ {t['input_box']}; color: {t['text_primary']}; border: 1px solid {t['border']};\
+      \ border-radius: 20px; padding: 10px; }}\n        \"\"\")\n        for w in\
+      \ self.bubble_widgets:\n            self._style_bubble(w['bubble'], w['stack'],\
+      \ w['ts'], w['is_own'])\n\n    def _style_bubble(self, bubble_lbl, stack_widget,\
+      \ time_lbl, is_own):\n        t = THEMES[self.current_theme]\n        bg = t['bubble_own']\
+      \ if is_own else t['bubble_other']\n        bubble_lbl.setStyleSheet(f\"background-color:\
+      \ transparent; color: {t['text_primary']}; font-size: 14px;\")\n        stack_widget.setStyleSheet(f\"\
+      background-color: {bg}; border-radius: 10px; border: 1px solid {t['border']};\"\
+      )\n        current_text = time_lbl.text()\n        if \"\u2713\u2713\" in current_text\
+      \ and (\"#4DF0F0\" in current_text or \"#53bdeb\" in current_text): pass \n\
+      \        else: time_lbl.setStyleSheet(f\"color: {t['time_color']}; font-size:\
+      \ 11px; margin-top: 4px; background-color: transparent;\")\n\n    def export_chat(self):\n\
+      \        filename, _ = QtWidgets.QFileDialog.getSaveFileName(self, \"Save Chat\
+      \ Log\", \"\", \"Text Files (*.txt)\")\n        if filename:\n            try:\n\
+      \                with open(filename, 'w', encoding='utf-8') as f:\n        \
+      \            f.write(f\"--- Chat Log with {self.dest_name} ---\\n\")\n     \
+      \               for msg in self.chat_history:\n                        sender\
+      \ = \"ME\" if msg['is_own'] else self.dest_name\n                        f.write(f\"\
+      [{msg['time']}] {sender}: {msg['text']}\\n\")\n            except: pass\n\n\
+      \    def clear_chat(self):\n        self.chat_history = []\n        self.pending_confirmations\
+      \ = []\n        self.bubble_widgets = []\n        while self.chat_layout.count():\n\
+      \            item = self.chat_layout.takeAt(0)\n            if item.widget():\
+      \ item.widget().deleteLater()\n\n    def handle_send_click(self):\n        text\
+      \ = self.input_box.text()\n        if not text: return\n        self._process_outgoing(text,\
+      \ is_file=False)\n        self.input_box.clear()\n\n    def handle_file_click(self):\n\
+      \        # 1. Update filter to suggest .txt files\n        path, _ = QtWidgets.QFileDialog.getOpenFileName(self,\
+      \ \"Select Text File\", \"\", \"Text Files (*.txt);;All Files (*)\")\n     \
+      \   if not path: return\n        \n        filename = os.path.basename(path)\n\
+      \n        # 2. VALIDATION: Check if it ends with .txt\n        if not filename.lower().endswith(\"\
+      .txt\"):\n            # Display System Error Bubble\n            self._add_bubble(f\"\
+      \u26A0\uFE0F System: Only .txt files are supported!\\nYou selected: {filename}\"\
+      , True, \"SYS\")\n            return\n\n        # 3. Proceed if valid\n    \
+      \    try:\n            with open(path, \"rb\") as f: \n                b64 =\
+      \ base64.b64encode(f.read()).decode('utf-8')\n            self._process_outgoing(f\"\
+      FILE:{filename}:{b64}\", is_file=True, filename=filename)\n        except: pass\n\
+      \n    def _process_outgoing(self, data_str, is_file=False, filename=\"\"):\n\
+      \        chunk_cap = self.payload_size - 1\n        data_len = len(data_str.encode(\"\
+      utf-8\", \"ignore\"))\n        num_chunks = (data_len + chunk_cap - 1) // chunk_cap\n\
+      \        if num_chunks == 0: num_chunks = 1\n        disp = f\"\U0001F4CE Sending\
+      \ File: {filename}...\" if is_file else data_str\n        time_str = datetime.now().strftime(\"\
+      %H:%M\")\n        self.chat_history.append({'text': disp, 'is_own': True, 'time':\
+      \ time_str})\n        ts = self._add_bubble(disp, is_own=True, time_str=time_str)\n\
+      \        self.pending_confirmations.append({'widget': ts, 'remaining': num_chunks,\
+      \ 'completed': False})\n        self.send_callback(data_str)\n\n    def on_rx_message(self,\
+      \ text, seq):\n        disp = text\n        if text.startswith(\"FILE:\"):\n\
+      \            try: disp = f\"\U0001F4CE Received File: {text.split(':', 2)[1]}\
+      \ (Saved)\"\n            except: disp = \"\U0001F4CE Received Corrupted File\"\
+      \n        time_str = datetime.now().strftime(\"%H:%M\")\n        self.chat_history.append({'text':\
+      \ disp, 'is_own': False, 'time': time_str})\n        self._add_bubble(disp,\
+      \ is_own=False, time_str=time_str)\n\n    def on_ack_received(self):\n     \
+      \   for item in self.pending_confirmations:\n            if not item['completed']:\n\
+      \                if item['remaining'] > 0:\n                    item['remaining']\
+      \ -= 1\n                    if item['remaining'] == 0:\n                   \
+      \     item['completed'] = True\n                        t = THEMES[self.current_theme]\n\
+      \                        now = datetime.now().strftime(\"%H:%M\")\n        \
+      \                item['widget'].setText(f\"{now} <span style='color: {t['tick_color']};\
+      \ font-weight: bold;'>\u2713\u2713</span>\")\n                return\n\n   \
+      \ def _add_bubble(self, text, is_own, time_str):\n        row = QtWidgets.QWidget()\n\
+      \        layout = QtWidgets.QHBoxLayout(row)\n        layout.setContentsMargins(0,0,0,0)\n\
+      \        bubble = QtWidgets.QLabel(text)\n        bubble.setWordWrap(True)\n\
+      \        bubble.setTextInteractionFlags(QtCore.Qt.TextSelectableByMouse)\n \
+      \       \n        ts_html = f\"{time_str} <span style='color: gray; font-weight:\
+      \ bold;'>\u2713\u2713</span>\" if is_own else time_str\n        ts = QtWidgets.QLabel(ts_html)\n\
+      \        ts.setAlignment(QtCore.Qt.AlignRight)\n        ts.setTextFormat(QtCore.Qt.RichText)\n\
+      \n        stack = QtWidgets.QWidget()\n        vbox = QtWidgets.QVBoxLayout(stack)\n\
+      \        vbox.setContentsMargins(8,8,8,5)\n        vbox.addWidget(bubble)\n\
+      \        vbox.addWidget(ts)\n        \n        shadow = QtWidgets.QGraphicsDropShadowEffect()\n\
+      \        shadow.setBlurRadius(5)\n        shadow.setXOffset(1)\n        shadow.setYOffset(1)\n\
+      \        shadow.setColor(QtGui.QColor(0, 0, 0, 40))\n        stack.setGraphicsEffect(shadow)\n\
+      \n        self._style_bubble(bubble, stack, ts, is_own)\n        self.bubble_widgets.append({'bubble':\
+      \ bubble, 'stack': stack, 'ts': ts, 'is_own': is_own})\n\n        if is_own:\
+      \ \n            layout.addStretch()\n            layout.addWidget(stack)\n \
+      \       else: \n            layout.addWidget(stack)\n            layout.addStretch()\n\
+      \        self.chat_layout.addWidget(row)\n        QtWidgets.QApplication.processEvents()\n\
+      \        QtCore.QTimer.singleShot(10, lambda: self.scroll_area.verticalScrollBar().setValue(self.scroll_area.verticalScrollBar().maximum()))\n\
+      \        return ts\n\n# --- 3. GNU RADIO BLOCK ---\n\nclass chat_gui_block(gr.basic_block):\n\
+      \    def __init__(self, payload_size=32):\n        gr.basic_block.__init__(self,\
+      \ name=\"WhatsApp Chat GUI\", in_sig=None, out_sig=None)\n        self.payload_size\
+      \ = payload_size\n        self.rx_buffer = b\"\"            \n        self.last_radio_seq_seen\
+      \ = -1 \n        self.last_ack_val_seen = -1\n        self.dummy_seq = 0\n \
+      \       \n        # Message Ports\n        self.message_port_register_out(pmt.intern(\"\
+      out\"))\n        self.message_port_register_in(pmt.intern(\"in\"))      \n \
+      \       self.message_port_register_in(pmt.intern(\"ack_in\"))\n        self.message_port_register_out(pmt.intern(\"\
+      config_out\")) # Config Port\n        \n        self.set_msg_handler(pmt.intern(\"\
+      in\"), self.handle_rx_msg)\n        self.set_msg_handler(pmt.intern(\"ack_in\"\
+      ), self.handle_ack_msg)\n        \n        self._poster = _GuiPoster()\n   \
+      \     self.qapp = QtWidgets.QApplication.instance()\n        if not self.qapp:\
+      \ self.qapp = QtWidgets.QApplication(sys.argv)\n        \n        # GUI\n  \
+      \      self.gui = ChatWindow(self.send_pdus, self.publish_config, payload_size=self.payload_size,\
+      \ dest_name=str(0))\n        \n        self._poster.rx_sig.connect(self.gui.on_rx_message)\n\
+      \        self._poster.ack_sig.connect(self.gui.on_ack_received)\n        self._poster.file_save_sig.connect(self._save_file_on_disk)\n\
+      \        self.gui.show()\n\n    def publish_config(self, pmt_msg):\n       \
+      \ self.message_port_pub(pmt.intern(\"config_out\"), pmt_msg)\n\n    def send_pdus(self,\
+      \ text):\n        data = text.encode(\"utf-8\", \"ignore\")\n        chunk_size\
+      \ = self.payload_size - 1\n        chunks = [data[i:i+chunk_size] for i in range(0,\
+      \ len(data), chunk_size)]\n        if not chunks: chunks = [b'']\n        for\
+      \ i, chunk in enumerate(chunks):\n            header = 0x01 if i == len(chunks)\
+      \ - 1 else 0x00\n            payload = bytes([header]) + chunk\n           \
+      \ if len(payload) < self.payload_size: payload += b'\\x00' * (self.payload_size\
+      \ - len(payload))\n            meta = pmt.make_dict()\n            pmt.dict_add(meta,\
+      \ pmt.intern(\"seq\"), pmt.from_long(self.dummy_seq))\n            self.dummy_seq\
+      \ = (self.dummy_seq + 1) % 256\n            vec = pmt.init_u8vector(len(payload),\
+      \ list(payload))\n            self.message_port_pub(pmt.intern(\"out\"), pmt.cons(meta,\
+      \ vec))\n\n    def handle_rx_msg(self, pdu):\n        if not pmt.is_pair(pdu):\
+      \ return\n        meta = pmt.car(pdu)\n        payload = pmt.cdr(pdu)\n    \
+      \    if not pmt.is_u8vector(payload): return\n        seq = -1\n        if pmt.dict_has_key(meta,\
+      \ pmt.intern(\"seq\")):\n            try: seq = pmt.to_python(pmt.dict_ref(meta,\
+      \ pmt.intern(\"seq\"), pmt.PMT_NIL))\n            except: pass\n        if seq\
+      \ != -1:\n            if seq == self.last_radio_seq_seen: return \n        \
+      \    self.last_radio_seq_seen = seq\n        data = bytes(pmt.u8vector_elements(payload))\n\
+      \        if len(data) > 0:\n            header, content = data[0], data[1:]\n\
+      \            self.rx_buffer += content.rstrip(b'\\x00')\n            if header\
+      \ == 0x01:\n                try:\n                    txt = self.rx_buffer.decode('utf-8',\
+      \ 'ignore')\n                    self._poster.rx_sig.emit(txt, seq)\n      \
+      \              if txt.startswith(\"FILE:\"):\n                        parts\
+      \ = txt.split(\":\", 2)\n                        self._poster.file_save_sig.emit(parts[1],\
+      \ parts[2])\n                except: pass\n                self.rx_buffer =\
+      \ b\"\"\n\n    def handle_ack_msg(self, pdu):\n        if not pmt.is_pair(pdu):\
+      \ return\n        meta = pmt.car(pdu)\n        payload = pmt.cdr(pdu)\n    \
+      \    ack_seq = -1\n        if pmt.dict_has_key(meta, pmt.intern(\"ack\")):\n\
+      \            try: ack_seq = pmt.to_python(pmt.dict_ref(meta, pmt.intern(\"ack\"\
+      ), pmt.PMT_NIL))\n            except: pass\n        elif pmt.is_u8vector(payload):\n\
+      \            data = bytes(pmt.u8vector_elements(payload))\n            if len(data)\
+      \ > 0: ack_seq = int(data[0])\n        if ack_seq != -1:\n            if ack_seq\
+      \ == self.last_ack_val_seen: return\n            self.last_ack_val_seen = ack_seq\n\
+      \            self._poster.ack_sig.emit()\n\n    def _save_file_on_disk(self,\
+      \ fname, b64_data):\n        # 1. Get the Target Node ID from the GUI\n    \
+      \    # This gets the ID of the person you are chatting with\n        node_id\
+      \ = self.gui.target_id \n        \n        # 2. Create a dynamic folder name\
+      \ (e.g., \"downloads_node_20\")\n        folder_name = f\"downloads_node_{node_id}\"\
+      \n        \n        # 3. Create the directory if it doesn't exist\n        if\
+      \ not os.path.exists(folder_name): \n            os.makedirs(folder_name)\n\
+      \            \n        # 4. Save the file inside that specific folder\n    \
+      \    try:\n            full_path = os.path.join(folder_name, fname)\n      \
+      \      with open(full_path, \"wb\") as f: \n                f.write(base64.b64decode(b64_data))\n\
+      \            print(f\"[System] File saved to: {full_path}\")\n        except\
+      \ Exception as e: \n            print(f\"[System] Error saving file: {e}\")\n\
+      \n    def stop(self):\n        self.gui.close()\n        return super().stop()"
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    payload_size: '32'
+  states:
+    _io_cache: ('WhatsApp Chat GUI', 'chat_gui_block', [('payload_size', '32')], [('in',
+      'message', 1), ('ack_in', 'message', 1)], [('config_out', 'message', 1), ('out',
+      'message', 1)], '', ['payload_size'])
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [600, 688.0]
+    rotation: 180
+    state: enabled
+- name: epy_block_10
+  id: epy_block
+  parameters:
+    _source_code: "from gnuradio import gr\nimport pmt, threading, time\nfrom collections\
+      \ import deque\n\nclass payload_to_pdu_with_seq_arq(gr.basic_block):\n    \"\
+      \"\"\n    PAYLOAD PDU -> PDU with SEQ + Stop-and-Wait ARQ\n    + PRIORITIZATION:\
+      \ Pauses Data TX if an ACK is being sent.\n    \"\"\"\n\n    def __init__(self,\
+      \ payload_size=32, wait_time_s=0.1, max_retries=10, verbose=True):\n       \
+      \ gr.basic_block.__init__(self,\n                                name=\"Payload\
+      \ to PDU with SEQ+ARQ (Smart)\",\n                                in_sig=None,\n\
+      \                                out_sig=None)\n\n        self.payload_size\
+      \ = int(payload_size)\n        self.wait_time_s  = float(wait_time_s)\n    \
+      \    self.max_retries  = int(max_retries)\n        self.verbose      = bool(verbose)\n\
+      \n        # --- PORTS ---\n        self.message_port_register_in(pmt.intern(\"\
+      in\"))       # Data to send\n        self.message_port_register_in(pmt.intern(\"\
+      ack_in\"))   # ACKs received from other node\n        self.message_port_register_in(pmt.intern(\"\
+      busy_in\"))  # New: Signal that WE are sending an ACK\n        self.message_port_register_out(pmt.intern(\"\
+      out\"))     # Final PDU\n\n        self.set_msg_handler(pmt.intern(\"in\"),\
+      \     self._handle_payload)\n        self.set_msg_handler(pmt.intern(\"ack_in\"\
+      ), self._handle_ack)\n        self.set_msg_handler(pmt.intern(\"busy_in\"),\
+      \ self._handle_busy)\n\n        # --- STATE ---\n        self._run = threading.Event()\n\
+      \        self._tx_thread = None\n        self._seq = 0\n        self._last_ack\
+      \ = None\n        self._pending_payloads = deque()\n        self._payload_cv\
+      \ = threading.Condition()\n        self._ack_cv = threading.Condition()\n  \
+      \      \n        # Smart Backoff State\n        self._tx_blocked_until = 0.0\n\
+      \n    def start(self):\n        self._run.set()\n        self._tx_thread = threading.Thread(target=self._tx_loop,\
+      \ daemon=True)\n        self._tx_thread.start()\n        return super().start()\n\
+      \n    def stop(self):\n        self._run.clear()\n        with self._payload_cv:\
+      \ self._payload_cv.notify_all()\n        with self._ack_cv: self._ack_cv.notify_all()\n\
+      \        if self._tx_thread: self._tx_thread.join(timeout=1.0)\n        return\
+      \ super().stop()\n\n    def _log(self, msg):\n        if self.verbose: print(f\"\
+      [Smart ARQ] {msg}\")\n\n    # --- HANDLERS ---\n    def _handle_busy(self, pdu):\n\
+      \        \"\"\"Called when we are sending an ACK. Pause Data TX to avoid collision.\"\
+      \"\"\n        # Pause for 150ms to let the ACK clear the radio\n        self._tx_blocked_until\
+      \ = time.monotonic() + 0.15 \n        # self._log(\"Prioritizing ACK: Pausing\
+      \ Data TX\")\n\n    def _handle_payload(self, pdu):\n        if not pmt.is_pair(pdu):\
+      \ return\n        meta, pl = pmt.car(pdu), pmt.cdr(pdu)\n        if not pmt.is_u8vector(pl):\
+      \ return\n        data = bytes(pmt.u8vector_elements(pl))\n\n        # Pad/Truncate\n\
+      \        if len(data) < self.payload_size:\n            data = data + b\"\\\
+      x00\" * (self.payload_size - len(data))\n        elif len(data) > self.payload_size:\n\
+      \            data = data[:self.payload_size]\n\n        with self._payload_cv:\n\
+      \            self._pending_payloads.append(data)\n            self._payload_cv.notify()\n\
+      \n    def _handle_ack(self, pdu):\n        ack_val = None\n        if pmt.is_pair(pdu):\n\
+      \            meta = pmt.car(pdu)\n            if pmt.is_dict(meta) and pmt.dict_has_key(meta,\
+      \ pmt.intern(\"ack\")):\n                try: ack_val = pmt.to_python(pmt.dict_ref(meta,\
+      \ pmt.intern(\"ack\"), pmt.PMT_NIL))\n                except: pass\n       \
+      \ \n        if ack_val is None: # Fallback to payload check\n             pl\
+      \ = pmt.cdr(pdu)\n             if pmt.is_u8vector(pl):\n                 d =\
+      \ bytes(pmt.u8vector_elements(pl))\n                 if len(d) >= 1: ack_val\
+      \ = d[0]\n\n        if ack_val is not None:\n            with self._ack_cv:\n\
+      \                self._last_ack = ack_val & 0xFF\n                self._ack_cv.notify_all()\n\
+      \            self._log(f\"Received confirmation ACK={ack_val}\")\n\n    # ---\
+      \ TX LOOP ---\n    def _tx_loop(self):\n        while self._run.is_set():\n\
+      \            # 1. Wait for Data\n            with self._payload_cv:\n      \
+      \          while self._run.is_set() and not self._pending_payloads:\n      \
+      \              self._payload_cv.wait(timeout=0.1)\n                if not self._run.is_set():\
+      \ break\n                payload = self._pending_payloads.popleft()\n\n    \
+      \        # 2. Frame it\n            seq = self._seq\n            expected_ack\
+      \ = (seq + 1) & 0xFF\n            frame = bytes([seq]) + payload\n         \
+      \   retries = 0\n            got_ack = False\n\n            # 3. Stop-and-Wait\
+      \ Loop\n            while self._run.is_set() and not got_ack:\n            \
+      \    \n                # --- BACKOFF CHECK ---\n                # If we are\
+      \ busy sending an ACK (from busy_in), wait here.\n                while time.monotonic()\
+      \ < self._tx_blocked_until:\n                    time.sleep(0.01)\n\n      \
+      \          # Transmit\n                self._publish(frame)\n              \
+      \  \n                # Wait for ACK\n                deadline = time.monotonic()\
+      \ + self.wait_time_s\n                while self._run.is_set() and time.monotonic()\
+      \ < deadline:\n                    with self._ack_cv:\n                    \
+      \    remaining = max(0.0, deadline - time.monotonic())\n                   \
+      \     self._ack_cv.wait(timeout=remaining)\n                        if self._last_ack\
+      \ == expected_ack:\n                            got_ack = True\n           \
+      \                 break\n                \n                if not got_ack:\n\
+      \                    retries += 1\n                    if retries > self.max_retries:\n\
+      \                        self._log(f\"Dropping seq={seq} after {self.max_retries}\
+      \ retries\")\n                        got_ack = True # Give up\n           \
+      \         else:\n                        self._log(f\"Retry {retries} for seq={seq}\"\
+      )\n\n            self._seq = expected_ack\n\n    def _publish(self, frame):\n\
+      \        meta = pmt.make_dict()\n        meta = pmt.dict_add(meta, pmt.intern(\"\
+      seq\"), pmt.from_long(frame[0]))\n        v = pmt.init_u8vector(len(frame),\
+      \ list(frame))\n        self.message_port_pub(pmt.intern(\"out\"), pmt.cons(meta,\
+      \ v))"
+    affinity: ''
+    alias: ''
+    comment: ''
+    max_retries: '10'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    payload_size: '40'
+    verbose: 'True'
+    wait_time_s: '0.3'
+  states:
+    _io_cache: '(''Payload to PDU with SEQ+ARQ (Smart)'', ''payload_to_pdu_with_seq_arq'',
+      [(''payload_size'', ''32''), (''wait_time_s'', ''0.1''), (''max_retries'', ''10''),
+      (''verbose'', ''True'')], [(''busy_in'', ''message'', 1), (''in'', ''message'',
+      1), (''ack_in'', ''message'', 1)], [(''out'', ''message'', 1)], ''\n    PAYLOAD
+      PDU -> PDU with SEQ + Stop-and-Wait ARQ\n    + PRIORITIZATION: Pauses Data TX
+      if an ACK is being sent.\n    '', [''max_retries'', ''payload_size'', ''verbose'',
+      ''wait_time_s''])'
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [280, 480.0]
+    rotation: 0
+    state: enabled
+- name: epy_block_11
+  id: epy_block
+  parameters:
+    _source_code: "from gnuradio import gr\nimport pmt, zlib\n\nclass crc32_verify_and_ack(gr.basic_block):\n\
+      \    \"\"\"\n    CRC32 Verify & ACK\n    ----------------------------------------------------------------\n\
+      \    Input  PDU : [ SEQ(1B) | PAYLOAD(40B) | CRC32(4B, big-endian) ]\n    PAYLOAD\
+      \   : [ NONCE(8B) | CIPHERTEXT(32B) ]\n    CRC over  : [ SEQ | PAYLOAD ]  ->\
+      \ total 41 bytes\n\n    On CRC pass:\n      - 'out'     \u2192 PAYLOAD only\
+      \ (40 bytes),\n                    meta: {crc_ok=True, seq=<seq>, ...}\n   \
+      \   - 'ack_out' \u2192 payload: [ NEXT_SEQ(1B) | PAYLOAD(40B) ]  (41 bytes)\n\
+      \                    meta:   {ack=<next_seq>, crc_ok=True}\n\n    On CRC fail:\n\
+      \      - 'drop'    \u2192 diagnostic PDU with {crc_ok=False, drop_reason=...}\n\
+      \n    Parameters\n      variant : \"ieee\"  (init/xor=0xFFFFFFFF, reflected)\n\
+      \                \"zlib\"  (init/xor=0x00000000, reflected)\n    \"\"\"\n\n\
+      \    def __init__(self, variant=\"ieee\"):\n        gr.basic_block.__init__(self,\
+      \ name=\"CRC32 Verifier\",\n                                in_sig=None, out_sig=None)\n\
+      \        self.variant = str(variant).lower().strip()\n        if self.variant\
+      \ not in (\"ieee\", \"zlib\"):\n            self.variant = \"ieee\"\n\n    \
+      \    # Fixed payload length: 40 bytes (8B nonce + 32B ciphertext)\n        self.payload_len\
+      \ = 40\n\n        # Ports\n        self.message_port_register_in(pmt.intern('in'))\n\
+      \        self.set_msg_handler(pmt.intern('in'), self._handle)\n        self.message_port_register_out(pmt.intern('out'))\
+      \      # 40B payload only\n        self.message_port_register_out(pmt.intern('ack_out'))\
+      \  # NEXT_SEQ + PAYLOAD\n        self.message_port_register_out(pmt.intern('drop'))\
+      \     # diagnostics\n\n    # CRC engines\n    def _crc32(self, data: bytes)\
+      \ -> int:\n        if self.variant == \"ieee\":\n            # CRC-32/IEEE 802.3:\
+      \ reflected, init=0xFFFFFFFF, xorout=0xFFFFFFFF\n            return (zlib.crc32(data,\
+      \ 0xFFFFFFFF) ^ 0xFFFFFFFF) & 0xFFFFFFFF\n        else:\n            # zlib\
+      \ default: reflected, init=0x00000000, xorout=0x00000000\n            return\
+      \ zlib.crc32(data) & 0xFFFFFFFF\n\n    def _handle(self, pdu):\n        if not\
+      \ pmt.is_pair(pdu):\n            return\n        meta, pl = pmt.car(pdu), pmt.cdr(pdu)\n\
+      \        if not pmt.is_u8vector(pl):\n            return\n\n        buf = bytes(pmt.u8vector_elements(pl))\n\
+      \n        # Expect exactly SEQ(1) + PAYLOAD(40) + CRC(4) = 45 bytes\n      \
+      \  expected_len = 1 + self.payload_len + 4\n        if len(buf) < expected_len:\n\
+      \            self._emit_drop(meta, buf, \"short_frame\")\n            return\n\
+      \n        body   = buf[:-4]  # [SEQ | PAYLOAD]\n        crc_rx = int.from_bytes(buf[-4:],\
+      \ byteorder='big')\n\n        # Expect exactly 1 + payload_len bytes in body\n\
+      \        if len(body) != 1 + self.payload_len:\n            self._emit_drop(meta,\
+      \ buf, \"bad_payload_len\")\n            return\n\n        seq     = body[0]\n\
+      \        payload = body[1:]  # 40 bytes: [NONCE(8) | CIPHERTEXT(32)]\n\n   \
+      \     if self._crc32(body) != crc_rx:\n            self._emit_drop(meta, buf,\
+      \ \"crc_fail\")\n            return\n\n        # ---- Publish PAYLOAD only on\
+      \ 'out' (40B) ----\n        out_meta = meta\n        try:\n            out_meta\
+      \ = pmt.dict_add(out_meta, pmt.intern(\"crc_ok\"), pmt.from_bool(True))\n  \
+      \          out_meta = pmt.dict_add(out_meta, pmt.intern(\"seq\"),    pmt.from_long(int(seq)))\n\
+      \        except Exception:\n            pass\n\n        self.message_port_pub(\n\
+      \            pmt.intern('out'),\n            pmt.cons(out_meta, pmt.init_u8vector(len(payload),\
+      \ list(payload)))\n        )\n\n        # ---- Publish ACK: [ NEXT_SEQ | PAYLOAD(40B)\
+      \ ] ----\n        ack_next = (seq + 1) & 0xFF\n        ack_meta = pmt.make_dict()\n\
+      \        try:\n            ack_meta = pmt.dict_add(ack_meta, pmt.intern(\"ack\"\
+      ),    pmt.from_long(ack_next))\n            ack_meta = pmt.dict_add(ack_meta,\
+      \ pmt.intern(\"crc_ok\"), pmt.from_bool(True))\n        except Exception:\n\
+      \            pass\n\n        ack_bytes = [ack_next] + list(payload)  # 1 + 40\
+      \ = 41 bytes\n        self.message_port_pub(\n            pmt.intern('ack_out'),\n\
+      \            pmt.cons(ack_meta, pmt.init_u8vector(len(ack_bytes), ack_bytes))\n\
+      \        )\n\n    def _emit_drop(self, meta, data_bytes, reason):\n        try:\n\
+      \            m = meta\n            if not pmt.is_dict(m):\n                m\
+      \ = pmt.make_dict()\n            m = pmt.dict_add(m, pmt.intern(\"crc_ok\"),\
+      \      pmt.from_bool(False))\n            m = pmt.dict_add(m, pmt.intern(\"\
+      drop_reason\"), pmt.intern(str(reason)))\n            v = pmt.init_u8vector(len(data_bytes),\
+      \ list(data_bytes))\n            self.message_port_pub(pmt.intern('drop'), pmt.cons(m,\
+      \ v))\n        except Exception:\n            pass\n"
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    variant: '"zlib"'
+  states:
+    _io_cache: "('CRC32 Verifier', 'crc32_verify_and_ack', [('variant', \"'ieee'\"\
+      )], [('in', 'message', 1)], [('drop', 'message', 1), ('ack_out', 'message',\
+      \ 1), ('out', 'message', 1)], '\\n    CRC32 Verify & ACK\\n    ----------------------------------------------------------------\\\
+      n    Input  PDU : [ SEQ(1B) | PAYLOAD(40B) | CRC32(4B, big-endian) ]\\n    PAYLOAD\
+      \   : [ NONCE(8B) | CIPHERTEXT(32B) ]\\n    CRC over  : [ SEQ | PAYLOAD ]  ->\
+      \ total 41 bytes\\n\\n    On CRC pass:\\n      - \\'out\\'     \u2192 PAYLOAD\
+      \ only (40 bytes),\\n                    meta: {crc_ok=True, seq=<seq>, ...}\\\
+      n      - \\'ack_out\\' \u2192 payload: [ NEXT_SEQ(1B) | PAYLOAD(40B) ]  (41\
+      \ bytes)\\n                    meta:   {ack=<next_seq>, crc_ok=True}\\n\\n \
+      \   On CRC fail:\\n      - \\'drop\\'    \u2192 diagnostic PDU with {crc_ok=False,\
+      \ drop_reason=...}\\n\\n    Parameters\\n      variant : \"ieee\"  (init/xor=0xFFFFFFFF,\
+      \ reflected)\\n                \"zlib\"  (init/xor=0x00000000, reflected)\\\
+      n    ', ['variant'])"
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [736, 1632.0]
+    rotation: 0
+    state: enabled
+- name: epy_block_12
+  id: epy_block
+  parameters:
+    _source_code: "from gnuradio import gr\nimport pmt, zlib\n\nclass ack_crc32_verify_minimal(gr.basic_block):\n\
+      \    \"\"\"\n    ACK CRC32 Verify (Minimal, 1-byte ACK)\n    -------------------------------------\n\
+      \    Input PDU (port 'in'):\n        Payload: [ NEXT_SEQ(1B) | PAYLOAD(40B)\
+      \ | CRC32(4B, big-endian) ]\n        CRC over: [ NEXT_SEQ | PAYLOAD ]  (1 +\
+      \ 40 = 41 bytes)\n\n    On CRC pass:\n        \u2192 'ack_out': PDU with\n \
+      \            meta:    { ack: NEXT_SEQ, crc_ok: True }\n             payload:\
+      \ [ NEXT_SEQ ]  (1 byte)\n\n    On CRC fail:\n        \u2192 'drop': PDU with\
+      \ original frame and meta:\n             { crc_ok: False, drop_reason: \"crc_fail\"\
+      \ or \"bad_len\" }\n\n    Parameters\n      variant : \"ieee\"  (init/xor=0xFFFFFFFF,\
+      \ reflected)\n                \"zlib\"  (init/xor=0x00000000, reflected)\n \
+      \   \"\"\"\n\n    def __init__(self, variant=\"ieee\"):\n        gr.basic_block.__init__(self,\n\
+      \                                name=\"CRC32 Verifier ACK\",\n            \
+      \                    in_sig=None,\n                                out_sig=None)\n\
+      \n        self.variant = str(variant).lower().strip()\n        if self.variant\
+      \ not in (\"ieee\", \"zlib\"):\n            self.variant = \"ieee\"\n\n    \
+      \    # Expected payload layout: 1 (next_seq) + 40 (payload) + 4 (crc32)\n  \
+      \      self.payload_len = 40\n\n        # Ports\n        self.message_port_register_in(pmt.intern(\"\
+      in\"))\n        self.set_msg_handler(pmt.intern(\"in\"), self._handle)\n\n \
+      \       self.message_port_register_out(pmt.intern(\"ack_out\"))\n        self.message_port_register_out(pmt.intern(\"\
+      drop\"))\n\n    # --- CRC helper ---\n    def _crc32(self, data: bytes) -> int:\n\
+      \        if self.variant == \"ieee\":\n            # CRC-32/IEEE 802.3: reflected,\
+      \ init=0xFFFFFFFF, xorout=0xFFFFFFFF\n            return (zlib.crc32(data, 0xFFFFFFFF)\
+      \ ^ 0xFFFFFFFF) & 0xFFFFFFFF\n        else:\n            # zlib default: reflected,\
+      \ init=0x00000000, xorout=0x00000000\n            return zlib.crc32(data) &\
+      \ 0xFFFFFFFF\n\n    # --- main handler ---\n    def _handle(self, pdu):\n  \
+      \      if not pmt.is_pair(pdu):\n            return\n\n        meta, pl = pmt.car(pdu),\
+      \ pmt.cdr(pdu)\n        if not pmt.is_u8vector(pl):\n            return\n\n\
+      \        buf = bytes(pmt.u8vector_elements(pl))\n\n        # Expect exactly\
+      \ NEXT_SEQ(1) + PAYLOAD(40) + CRC32(4) = 45 bytes\n        expected_len = 1\
+      \ + self.payload_len + 4\n        if len(buf) != expected_len:\n           \
+      \ self._emit_drop(meta, buf, \"bad_len\")\n            return\n\n        body\
+      \   = buf[:-4]                         # [ NEXT_SEQ | PAYLOAD(40B) ]\n     \
+      \   crc_rx = int.from_bytes(buf[-4:], \"big\")\n        next_seq = body[0]\n\
+      \n        if self._crc32(body) != crc_rx:\n            self._emit_drop(meta,\
+      \ buf, \"crc_fail\")\n            return\n\n        # --- Publish 1-byte ACK\
+      \ PDU ---\n        ack_meta = pmt.make_dict()\n        try:\n            ack_meta\
+      \ = pmt.dict_add(ack_meta, pmt.intern(\"ack\"),\n                          \
+      \          pmt.from_long(int(next_seq)))\n            ack_meta = pmt.dict_add(ack_meta,\
+      \ pmt.intern(\"crc_ok\"),\n                                    pmt.from_bool(True))\n\
+      \        except Exception:\n            pass\n\n        ack_payload = [int(next_seq)\
+      \ & 0xFF]\n        self.message_port_pub(\n            pmt.intern(\"ack_out\"\
+      ),\n            pmt.cons(ack_meta, pmt.init_u8vector(1, ack_payload))\n    \
+      \    )\n\n    def _emit_drop(self, meta, data_bytes, reason):\n        try:\n\
+      \            m = meta\n            if not pmt.is_dict(m):\n                m\
+      \ = pmt.make_dict()\n            m = pmt.dict_add(m, pmt.intern(\"crc_ok\"),\
+      \ pmt.from_bool(False))\n            m = pmt.dict_add(m, pmt.intern(\"drop_reason\"\
+      ),\n                             pmt.intern(str(reason)))\n            v = pmt.init_u8vector(len(data_bytes),\
+      \ list(data_bytes))\n            self.message_port_pub(pmt.intern(\"drop\"),\
+      \ pmt.cons(m, v))\n        except Exception:\n            pass\n"
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    variant: '"zlib"'
+  states:
+    _io_cache: "('CRC32 Verifier ACK', 'ack_crc32_verify_minimal', [('variant', \"\
+      'ieee'\")], [('in', 'message', 1)], [('drop', 'message', 1), ('ack_out', 'message',\
+      \ 1)], '\\n    ACK CRC32 Verify (Minimal, 1-byte ACK)\\n    -------------------------------------\\\
+      n    Input PDU (port \\'in\\'):\\n        Payload: [ NEXT_SEQ(1B) | PAYLOAD(40B)\
+      \ | CRC32(4B, big-endian) ]\\n        CRC over: [ NEXT_SEQ | PAYLOAD ]  (1 +\
+      \ 40 = 41 bytes)\\n\\n    On CRC pass:\\n        \u2192 \\'ack_out\\': PDU with\\\
+      n             meta:    { ack: NEXT_SEQ, crc_ok: True }\\n             payload:\
+      \ [ NEXT_SEQ ]  (1 byte)\\n\\n    On CRC fail:\\n        \u2192 \\'drop\\':\
+      \ PDU with original frame and meta:\\n             { crc_ok: False, drop_reason:\
+      \ \"crc_fail\" or \"bad_len\" }\\n\\n    Parameters\\n      variant : \"ieee\"\
+      \  (init/xor=0xFFFFFFFF, reflected)\\n                \"zlib\"  (init/xor=0x00000000,\
+      \ reflected)\\n    ', ['variant'])"
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [848, 2784.0]
+    rotation: 0
+    state: enabled
+- name: epy_block_1_0
+  id: epy_block
+  parameters:
+    _source_code: "\"\"\"\nEmbedded Python Block: Add Preamble + Address + Type (ACK)\n\
+      \"\"\"\nfrom gnuradio import gr\nimport pmt\n\nclass add_ack_address_block(gr.basic_block):\n\
+      \    \"\"\"\n    Adds [ PREAMBLE(128) | DEST(1) | TYPE(1) ] to ACK.\n    TYPE\
+      \ = 0x02 (ACK)\n    \"\"\"\n\n    def __init__(self):\n        gr.basic_block.__init__(\n\
+      \            self,\n            name=\"Add ACK Preamble + Address\",\n     \
+      \       in_sig=None,\n            out_sig=None\n        )\n\n        self.dest_addr\
+      \ = 0 & 0xFF\n\n        # Same Preamble as Data\n        self.preamble = [\n\
+      \            0xD3, 0x42, 0xA1, 0x7F, 0x9C, 0xE2, 0x55, 0xAA,\n            0x13,\
+      \ 0x87, 0x4E, 0xB1, 0x2C, 0xF0, 0x99, 0x6D,\n            0x3A, 0xC4, 0x1F, 0x82,\
+      \ 0x5B, 0xD8, 0x66, 0xE7,\n            0x24, 0x91, 0x7C, 0x0B, 0x38, 0xF2, 0x4D,\
+      \ 0xC6,\n            0xD3, 0x42, 0xA1, 0x7F, 0x9C, 0xE2, 0x55, 0xAA,\n     \
+      \       0x13, 0x87, 0x4E, 0xB1, 0x2C, 0xF0, 0x99, 0x6D,\n            0x3A, 0xC4,\
+      \ 0x1F, 0x82, 0x5B, 0xD8, 0x66, 0xE7,\n            0x24, 0x91, 0x7C, 0x0B, 0x38,\
+      \ 0xF2, 0x4D, 0xC6,\n            0xD3, 0x42, 0xA1, 0x7F, 0x9C, 0xE2, 0x55, 0xAA,\n\
+      \            0x13, 0x87, 0x4E, 0xB1, 0x2C, 0xF0, 0x99, 0x6D,\n            0x3A,\
+      \ 0xC4, 0x1F, 0x82, 0x5B, 0xD8, 0x66, 0xE7,\n            0x24, 0x91, 0x7C, 0x0B,\
+      \ 0x38, 0xF2, 0x4D, 0xC6,\n            0xD3, 0x42, 0xA1, 0x7F, 0x9C, 0xE2, 0x55,\
+      \ 0xAA,\n            0x13, 0x87, 0x4E, 0xB1, 0x2C, 0xF0, 0x99, 0x6D,\n     \
+      \       0x3A, 0xC4, 0x1F, 0x82, 0x5B, 0xD8, 0x66, 0xE7,\n            0x24, 0x91,\
+      \ 0x7C, 0x0B, 0x38, 0xF2, 0x4D, 0xC6\n        ]\n\n        self.message_port_register_in(pmt.intern('in'))\n\
+      \        self.message_port_register_out(pmt.intern('out'))\n        self.message_port_register_in(pmt.intern('config'))\n\
+      \        \n        self.set_msg_handler(pmt.intern('in'), self.handle_msg)\n\
+      \        self.set_msg_handler(pmt.intern('config'), self.handle_config)\n\n\
+      \    def handle_config(self, msg):\n        if pmt.is_dict(msg) and pmt.dict_has_key(msg,\
+      \ pmt.intern(\"dest_addr\")):\n            new_addr = pmt.to_long(pmt.dict_ref(msg,\
+      \ pmt.intern(\"dest_addr\"), pmt.PMT_NIL))\n            self.dest_addr = new_addr\
+      \ & 0xFF\n\n    def handle_msg(self, pdu):\n        if not pmt.is_pair(pdu):\n\
+      \            return\n\n        meta = pmt.car(pdu)\n        payload = pmt.cdr(pdu)\n\
+      \n        if not pmt.is_u8vector(payload):\n            return\n\n        data\
+      \ = list(pmt.u8vector_elements(payload))\n\n        # --- MODIFIED HERE ---\n\
+      \        # Structure: [ PREAMBLE ] + [ DEST ] + [ TYPE=0x02 ] + [ DATA ]\n \
+      \       new_frame = self.preamble + [self.dest_addr] + [0x02] + data\n\n   \
+      \     try:\n            meta = pmt.dict_add(meta, pmt.intern(\"my_addr\"), pmt.from_long(self.dest_addr))\n\
+      \        except:\n            pass\n\n        new_payload_pmt = pmt.init_u8vector(len(new_frame),\
+      \ new_frame)\n        self.message_port_pub(pmt.intern('out'), pmt.cons(meta,\
+      \ new_payload_pmt))"
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+  states:
+    _io_cache: ('Add ACK Preamble + Address', 'add_ack_address_block', [], [('config',
+      'message', 1), ('in', 'message', 1)], [('out', 'message', 1)], '\n    Adds [
+      PREAMBLE(128) | DEST(1) | TYPE(1) ] to ACK.\n    TYPE = 0x02 (ACK)\n    ', [])
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1240, 1600.0]
+    rotation: 0
+    state: enabled
+- name: epy_block_2
+  id: epy_block
+  parameters:
+    _source_code: "\"\"\"\nEmbedded Python Block: Address Filter (DATA Only) - Auto-Align\n\
+      \"\"\"\nfrom gnuradio import gr\nimport pmt\n\nclass address_filter_rx(gr.basic_block):\n\
+      \    \"\"\"\n    Scans for [ PREAMBLE ] inside the PDU.\n    Expects after preamble:\
+      \ [ DEST(1) | TYPE(1) | SEQ(1) | PAYLOAD... ]\n    Accepts only if DEST == my_addr\
+      \ AND TYPE == 0x01\n    \"\"\"\n\n    def __init__(self, preamble_len=32):\n\
+      \        gr.basic_block.__init__(self, name=\"Address Filter\", in_sig=None,\
+      \ out_sig=None)\n        \n        self.my_addr = 0 & 0xFF\n        \n     \
+      \   # Exact 128-byte Preamble (Must match TX)\n        self.preamble = bytes([\n\
+      \            0xD3, 0x42, 0xA1, 0x7F, 0x9C, 0xE2, 0x55, 0xAA,\n            0x13,\
+      \ 0x87, 0x4E, 0xB1, 0x2C, 0xF0, 0x99, 0x6D,\n            0x3A, 0xC4, 0x1F, 0x82,\
+      \ 0x5B, 0xD8, 0x66, 0xE7,\n            0x24, 0x91, 0x7C, 0x0B, 0x38, 0xF2, 0x4D,\
+      \ 0xC6,\n            0xD3, 0x42, 0xA1, 0x7F, 0x9C, 0xE2, 0x55, 0xAA,\n     \
+      \       0x13, 0x87, 0x4E, 0xB1, 0x2C, 0xF0, 0x99, 0x6D,\n            0x3A, 0xC4,\
+      \ 0x1F, 0x82, 0x5B, 0xD8, 0x66, 0xE7,\n            0x24, 0x91, 0x7C, 0x0B, 0x38,\
+      \ 0xF2, 0x4D, 0xC6,\n            0xD3, 0x42, 0xA1, 0x7F, 0x9C, 0xE2, 0x55, 0xAA,\n\
+      \            0x13, 0x87, 0x4E, 0xB1, 0x2C, 0xF0, 0x99, 0x6D,\n            0x3A,\
+      \ 0xC4, 0x1F, 0x82, 0x5B, 0xD8, 0x66, 0xE7,\n            0x24, 0x91, 0x7C, 0x0B,\
+      \ 0x38, 0xF2, 0x4D, 0xC6,\n            0xD3, 0x42, 0xA1, 0x7F, 0x9C, 0xE2, 0x55,\
+      \ 0xAA,\n            0x13, 0x87, 0x4E, 0xB1, 0x2C, 0xF0, 0x99, 0x6D,\n     \
+      \       0x3A, 0xC4, 0x1F, 0x82, 0x5B, 0xD8, 0x66, 0xE7,\n            0x24, 0x91,\
+      \ 0x7C, 0x0B, 0x38, 0xF2, 0x4D, 0xC6\n        ])\n\n        self.message_port_register_in(pmt.intern('in'))\n\
+      \        self.message_port_register_out(pmt.intern('out'))\n        self.message_port_register_out(pmt.intern('drop'))\n\
+      \        self.message_port_register_in(pmt.intern('config'))\n        \n   \
+      \     self.set_msg_handler(pmt.intern('in'), self._handle)\n        self.set_msg_handler(pmt.intern('config'),\
+      \ self.handle_config)\n\n    def handle_config(self, msg):\n        if pmt.is_dict(msg)\
+      \ and pmt.dict_has_key(msg, pmt.intern(\"my_addr\")):\n            new_addr\
+      \ = pmt.to_long(pmt.dict_ref(msg, pmt.intern(\"my_addr\"), pmt.PMT_NIL))\n \
+      \           self.my_addr = new_addr & 0xFF\n\n    def _handle(self, pdu):\n\
+      \        if not pmt.is_pair(pdu): return\n        meta, pl = pmt.car(pdu), pmt.cdr(pdu)\n\
+      \        if not pmt.is_u8vector(pl): return\n\n        data = bytes(pmt.u8vector_elements(pl))\n\
+      \n        # 1. SEARCH for the preamble pattern to find exact start\n       \
+      \ start_idx = data.find(self.preamble)\n        if start_idx == -1:\n      \
+      \      self._emit_drop(meta, data, reason=\"preamble_not_found\")\n        \
+      \    return\n\n        # 2. Identify the packet content after the preamble\n\
+      \        # Structure: [DEST(1)] [TYPE(1)] [SEQ(1)] ...\n        payload_idx\
+      \ = start_idx + len(self.preamble)\n        \n        # Check if we have enough\
+      \ bytes remaining for Dest+Type\n        if len(data) < payload_idx + 2:\n \
+      \           self._emit_drop(meta, data, reason=\"short_after_preamble\")\n \
+      \           return\n\n        frame = data[payload_idx:]\n        \n       \
+      \ dest = frame[0]\n        msg_type = frame[1]\n\n        # 3. Check Address\n\
+      \        if dest != self.my_addr:\n            self._emit_drop(meta, data, reason=\"\
+      addr_mismatch\")\n            return\n\n        # 4. Check Type (Must be 0x01\
+      \ for Data)\n        if msg_type != 0x01:\n            return # Silently ignore\
+      \ ACKs or others\n\n        # 5. Strip Dest(1) + Type(1) -> Keep [ SEQ | PAYLOAD\
+      \ | CRC ]\n        fwd = frame[2:]\n        \n        if len(fwd) < 1: \n  \
+      \          return\n\n        seq = fwd[0]\n\n        # Publish\n        try:\n\
+      \            meta = pmt.dict_add(meta, pmt.intern(\"dest_addr\"), pmt.from_long(dest))\n\
+      \            meta = pmt.dict_add(meta, pmt.intern(\"seq\"), pmt.from_long(seq))\n\
+      \        except: pass\n\n        out_vec = pmt.init_u8vector(len(fwd), list(fwd))\n\
+      \        self.message_port_pub(pmt.intern('out'), pmt.cons(meta, out_vec))\n\
+      \n    def _emit_drop(self, meta, data_bytes, reason=\"drop\"):\n        try:\n\
+      \            m = pmt.dict_add(meta, pmt.intern(\"drop_reason\"), pmt.intern(reason))\n\
+      \            v = pmt.init_u8vector(len(data_bytes), list(data_bytes))\n    \
+      \        self.message_port_pub(pmt.intern('drop'), pmt.cons(m, v))\n       \
+      \ except: pass"
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    preamble_len: '128'
+  states:
+    _io_cache: '(''Address Filter'', ''address_filter_rx'', [(''preamble_len'', ''32'')],
+      [(''config'', ''message'', 1), (''in'', ''message'', 1)], [(''drop'', ''message'',
+      1), (''out'', ''message'', 1)], ''\n    Scans for [ PREAMBLE ] inside the PDU.\n    Expects
+      after preamble: [ DEST(1) | TYPE(1) | SEQ(1) | PAYLOAD... ]\n    Accepts only
+      if DEST == my_addr AND TYPE == 0x01\n    '', [])'
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [544, 1632.0]
+    rotation: 0
+    state: enabled
+- name: epy_block_4
+  id: epy_block
+  parameters:
+    _source_code: "from gnuradio import gr\nimport pmt\nfrom Crypto.Cipher import\
+      \ AES\nimport os\n\nclass pdu_aes_encrypt(gr.basic_block):\n    \"\"\"\n   \
+      \ PDU AES Encrypt (AES-CTR)\n\n    In:\n      - PDU: (meta, payload_bytes)\n\
+      \n    Out:\n      - PDU: same meta\n              payload = NONCE(8 bytes) |\
+      \ CIPHERTEXT(len(payload_bytes))\n\n    Parameters:\n      key_hex : AES key\
+      \ in hex (16/24/32 bytes => 32/48/64 hex chars)\n      verbose : print debug\n\
+      \    \"\"\"\n\n    def __init__(self, key_hex=\"00112233445566778899AABBCCDDEEFF\"\
+      , verbose=True):\n        gr.basic_block.__init__(self,\n                  \
+      \              name=\"PDU AES Encrypt (CTR)\",\n                           \
+      \     in_sig=None,\n                                out_sig=None)\n\n      \
+      \  self.verbose = bool(verbose)\n        self.set_key_hex(key_hex)\n\n     \
+      \   self.message_port_register_in(pmt.intern(\"in\"))\n        self.message_port_register_out(pmt.intern(\"\
+      out\"))\n        self.set_msg_handler(pmt.intern(\"in\"), self._handle_msg)\n\
+      \n    def _log(self, msg):\n        if self.verbose:\n            print(f\"\
+      [pdu_aes_encrypt] {msg}\")\n\n    # ---- key handling ----\n    def set_key_hex(self,\
+      \ key_hex):\n        \"\"\"\n        Set AES key as hex string (32/48/64 hex\
+      \ chars).\n        Can be used as a GRC callback.\n        \"\"\"\n        key_hex\
+      \ = key_hex.replace(\" \", \"\")\n        try:\n            key = bytes.fromhex(key_hex)\n\
+      \        except ValueError:\n            raise ValueError(\"key_hex must be\
+      \ valid hex\")\n\n        if len(key) not in (16, 24, 32):\n            raise\
+      \ ValueError(\"AES key must be 16, 24, or 32 bytes (32/48/64 hex chars)\")\n\
+      \n        self._key = key\n        self._log(f\"Key set ({len(key)} bytes)\"\
+      )\n\n    # ---- message handler ----\n    def _handle_msg(self, pdu):\n    \
+      \    if not pmt.is_pair(pdu):\n            return\n\n        meta = pmt.car(pdu)\n\
+      \        pl   = pmt.cdr(pdu)\n\n        if not pmt.is_u8vector(pl):\n      \
+      \      self._log(\"Ignoring non-u8vector payload\")\n            return\n\n\
+      \        plaintext = bytes(pmt.u8vector_elements(pl))\n\n        # Generate\
+      \ random nonce (8 bytes) for AES-CTR\n        nonce = os.urandom(8)\n\n    \
+      \    cipher = AES.new(self._key, AES.MODE_CTR, nonce=nonce)\n        ciphertext\
+      \ = cipher.encrypt(plaintext)\n\n        out_bytes = nonce + ciphertext\n\n\
+      \        payload_pmt = pmt.init_u8vector(len(out_bytes), list(out_bytes))\n\
+      \        out_pdu = pmt.cons(meta, payload_pmt)\n        self.message_port_pub(pmt.intern(\"\
+      out\"), out_pdu)\n\n        self._log(f\"Encrypted PDU: in_len={len(plaintext)},\
+      \ out_len={len(out_bytes)}\")\n"
+    affinity: ''
+    alias: ''
+    comment: ''
+    key_hex: aes_key
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    verbose: 'False'
+  states:
+    _io_cache: '(''PDU AES Encrypt (CTR)'', ''pdu_aes_encrypt'', [(''key_hex'', "''00112233445566778899AABBCCDDEEFF''"),
+      (''verbose'', ''True'')], [(''in'', ''message'', 1)], [(''out'', ''message'',
+      1)], ''\n    PDU AES Encrypt (AES-CTR)\n\n    In:\n      - PDU: (meta, payload_bytes)\n\n    Out:\n      -
+      PDU: same meta\n              payload = NONCE(8 bytes) | CIPHERTEXT(len(payload_bytes))\n\n    Parameters:\n      key_hex
+      : AES key in hex (16/24/32 bytes => 32/48/64 hex chars)\n      verbose : print
+      debug\n    '', [''verbose''])'
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [224, 672.0]
+    rotation: 180
+    state: disabled
+- name: epy_block_5
+  id: epy_block
+  parameters:
+    _source_code: "from gnuradio import gr\nimport pmt, os, threading\n\nclass pdu_payload_to_file(gr.basic_block):\n\
+      \    \"\"\"\n    PDU Payload \u2192 File\n    ------------------\n    Input\
+      \  PDUs (from crc32_verify_and_ack.out): [ PAYLOAD(32B) ] with meta {seq, packet_len=32,\
+      \ crc_ok=True}\n    Action: Appends PAYLOAD to a file, once per new sequence\
+      \ number.\n            On stop (or CTRL \"FLUSH\"), optionally trims trailing\
+      \ 0x00 bytes (padding).\n\n    Parameters\n    ----------\n    output_path :\
+      \ str   Path to output file (use r\\\"D:\\\\path\\\\out.txt\\\" on Windows)\n\
+      \    overwrite   : int   1 = truncate on start, 0 = append if file exists  (default\
+      \ 1)\n    strip_zeros_on_close : int  1 = rstrip(b\\\"\\\\x00\\\") at close/flush\
+      \     (default 1)\n    expect_seq_start : int  Expected first seq (default 0).\
+      \ Used only for logging/duplicate detection.\n\n    Ports\n    -----\n    in\
+      \    : PDU input  (payload only)\n    ctrl  : PDU input  (optional commands:\
+      \ b\\\"RESET\\\", b\\\"FLUSH\\\", b\\\"CLOSE\\\")\n    log   : PDU output (optional\
+      \ status messages)\n    \"\"\"\n\n    def __init__(self, output_path=\"/tmp/out.txt\"\
+      , overwrite=1, strip_zeros_on_close=1, expect_seq_start=0):\n        gr.basic_block.__init__(self,\
+      \ name=\"File Source\", in_sig=None, out_sig=None)\n\n        self.output_path\
+      \ = str(output_path)\n        self.overwrite = bool(int(overwrite))\n      \
+      \  self.strip_zeros_on_close = bool(int(strip_zeros_on_close))\n        self.expect_seq\
+      \ = int(expect_seq_start) & 0xFF\n\n        # state\n        self._f = None\n\
+      \        self._lock = threading.Lock()\n        self._last_written_seq = None\
+      \    # to detect duplicates\n        self._closed = False\n\n        # ports\n\
+      \        self.message_port_register_in(pmt.intern('in'))\n        self.set_msg_handler(pmt.intern('in'),\
+      \ self._handle_in)\n\n        self.message_port_register_in(pmt.intern('ctrl'))\n\
+      \        self.set_msg_handler(pmt.intern('ctrl'), self._handle_ctrl)\n\n   \
+      \     self.message_port_register_out(pmt.intern('log'))\n\n    # ----------\
+      \ lifecycle ----------\n    def start(self):\n        self._open_file()\n  \
+      \      return super().start()\n\n    def stop(self):\n        self._finalize_file(trim=self.strip_zeros_on_close)\n\
+      \        return super().stop()\n\n    # ---------- file helpers ----------\n\
+      \    def _open_file(self):\n        with self._lock:\n            os.makedirs(os.path.dirname(self.output_path),\
+      \ exist_ok=True) if os.path.dirname(self.output_path) else None\n          \
+      \  mode = \"wb\" if self.overwrite else \"ab\"\n            try:\n         \
+      \       self._f = open(self.output_path, mode)\n                self._closed\
+      \ = False\n                self._emit_log(f\"opened:{self.output_path} mode:{mode}\"\
+      )\n            except Exception as e:\n                self._emit_log(f\"error_open:{e}\"\
+      )\n\n    def _finalize_file(self, trim=True):\n        with self._lock:\n  \
+      \          if self._closed:\n                return\n            try:\n    \
+      \            if self._f:\n                    self._f.flush()\n            \
+      \        self._f.close()\n                    self._f = None\n             \
+      \   if trim and os.path.exists(self.output_path):\n                    # trim\
+      \ trailing 0x00 bytes added as padding\n                    with open(self.output_path,\
+      \ \"rb\") as f:\n                        data = f.read()\n                 \
+      \   data = data.rstrip(b\"\\x00\")\n                    with open(self.output_path,\
+      \ \"wb\") as f:\n                        f.write(data)\n                self._closed\
+      \ = True\n                self._emit_log(\"closed\")\n            except Exception\
+      \ as e:\n                self._emit_log(f\"error_close:{e}\")\n\n    # ----------\
+      \ message handlers ----------\n    def _handle_ctrl(self, pdu):\n        # CTRL\
+      \ payloads: b\"RESET\", b\"FLUSH\", b\"CLOSE\"\n        if not pmt.is_pair(pdu):\
+      \ return\n        pl = pmt.cdr(pdu)\n        if not pmt.is_u8vector(pl): return\n\
+      \        cmd = bytes(pmt.u8vector_elements(pl)).strip().upper()\n        if\
+      \ cmd == b\"RESET\":\n            # truncate and reset seq tracking\n      \
+      \      self._finalize_file(trim=False)\n            # reopen fresh (overwrite)\n\
+      \            self.overwrite = True\n            self._open_file()\n        \
+      \    self._last_written_seq = None\n            self._emit_log(\"reset\")\n\
+      \        elif cmd == b\"FLUSH\":\n            # flush & trim zeros once (keeps\
+      \ file open by reopening append)\n            self._finalize_file(trim=True)\n\
+      \            self.overwrite = False\n            self._open_file()\n       \
+      \     self._emit_log(\"flushed\")\n        elif cmd == b\"CLOSE\":\n       \
+      \     self._finalize_file(trim=True)\n        else:\n            self._emit_log(f\"\
+      unknown_ctrl:{cmd!r}\")\n\n    def _handle_in(self, pdu):\n        if not pmt.is_pair(pdu):\n\
+      \            return\n        meta, pl = pmt.car(pdu), pmt.cdr(pdu)\n       \
+      \ if not pmt.is_u8vector(pl):\n            return\n        payload = bytes(pmt.u8vector_elements(pl))\n\
+      \n        # Expect exactly 32 bytes from crc32_verify_and_ack.out\n        if\
+      \ len(payload) != 32:\n            self._emit_log(f\"warn_len:{len(payload)}\
+      \ (expected 32)\")\n\n        # Read seq from metadata if present\n        seq\
+      \ = None\n        if pmt.is_dict(meta):\n            try:\n                if\
+      \ pmt.dict_has_key(meta, pmt.intern(\"seq\")):\n                    seq = int(pmt.to_python(pmt.dict_ref(meta,\
+      \ pmt.intern(\"seq\"), pmt.PMT_NIL))) & 0xFF\n            except Exception:\n\
+      \                seq = None\n\n        # Duplicate protection (stop-and-wait\
+      \ should avoid dupes, but retries might echo)\n        if seq is not None and\
+      \ self._last_written_seq is not None and seq == self._last_written_seq:\n  \
+      \          self._emit_log(f\"skip_dup_seq:{seq}\")\n            return\n\n \
+      \       # Append payload bytes\n        with self._lock:\n            if not\
+      \ self._f:\n                self._open_file()\n            try:\n          \
+      \      self._f.write(payload)\n                self._f.flush()\n           \
+      \     self._last_written_seq = seq if seq is not None else self._last_written_seq\n\
+      \            except Exception as e:\n                self._emit_log(f\"error_write:{e}\"\
+      )\n                return\n\n        # Light sequencing check (optional)\n \
+      \       if seq is not None:\n            if seq != self.expect_seq:\n      \
+      \          self._emit_log(f\"seq_out_of_order:got={seq} exp={self.expect_seq}\"\
+      )\n                # still accept; update expected next (stop-and-wait increments\
+      \ by 1)\n            self.expect_seq = (seq + 1) & 0xFF\n\n    # ----------\
+      \ log helper ----------\n    def _emit_log(self, msg: str):\n        try:\n\
+      \            m = pmt.make_dict()\n            m = pmt.dict_add(m, pmt.intern(\"\
+      file\"), pmt.intern(self.output_path))\n            m = pmt.dict_add(m, pmt.intern(\"\
+      event\"), pmt.intern(msg))\n            self.message_port_pub(pmt.intern('log'),\
+      \ pmt.cons(m, pmt.PMT_NIL))\n        except Exception:\n            pass\n"
+    affinity: ''
+    alias: ''
+    comment: ''
+    expect_seq_start: '0'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    output_path: '"C:\\Users\\Lenovo\\Downloads\\test_1\\output.txt"'
+    overwrite: '1'
+    strip_zeros_on_close: '1'
+  states:
+    _io_cache: "('File Source', 'pdu_payload_to_file', [('output_path', \"'/tmp/out.txt'\"\
+      ), ('overwrite', '1'), ('strip_zeros_on_close', '1'), ('expect_seq_start', '0')],\
+      \ [('ctrl', 'message', 1), ('in', 'message', 1)], [('log', 'message', 1)], '\\\
+      n    PDU Payload \u2192 File\\n    ------------------\\n    Input  PDUs (from\
+      \ crc32_verify_and_ack.out): [ PAYLOAD(32B) ] with meta {seq, packet_len=32,\
+      \ crc_ok=True}\\n    Action: Appends PAYLOAD to a file, once per new sequence\
+      \ number.\\n            On stop (or CTRL \"FLUSH\"), optionally trims trailing\
+      \ 0x00 bytes (padding).\\n\\n    Parameters\\n    ----------\\n    output_path\
+      \ : str   Path to output file (use r\"D:\\\\path\\\\out.txt\" on Windows)\\\
+      n    overwrite   : int   1 = truncate on start, 0 = append if file exists  (default\
+      \ 1)\\n    strip_zeros_on_close : int  1 = rstrip(b\"\\\\x00\") at close/flush\
+      \     (default 1)\\n    expect_seq_start : int  Expected first seq (default\
+      \ 0). Used only for logging/duplicate detection.\\n\\n    Ports\\n    -----\\\
+      n    in    : PDU input  (payload only)\\n    ctrl  : PDU input  (optional commands:\
+      \ b\"RESET\", b\"FLUSH\", b\"CLOSE\")\\n    log   : PDU output (optional status\
+      \ messages)\\n    ', ['output_path', 'overwrite', 'strip_zeros_on_close'])"
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1224, 1760.0]
+    rotation: 0
+    state: disabled
+- name: epy_block_6
+  id: epy_block
+  parameters:
+    _source_code: "\"\"\"\nEmbedded Python Block: ACK Address Filter (ACK Only) -\
+      \ Auto-Align\n\"\"\"\nfrom gnuradio import gr\nimport pmt\n\nclass ack_address_filter_rx(gr.basic_block):\n\
+      \    \"\"\"\n    Scans for [ PREAMBLE ] inside the PDU.\n    Expects: [ DEST(1)\
+      \ | TYPE(1) | NEXT_SEQ(1) | PAYLOAD(40) | CRC(4) ]\n    Accepts only if DEST\
+      \ == my_addr AND TYPE == 0x02\n    \"\"\"\n\n    def __init__(self, preamble_len=32):\n\
+      \        gr.basic_block.__init__(self, name=\"Address Filter ACK\", in_sig=None,\
+      \ out_sig=None)\n\n        self.my_addr = 0 & 0xFF\n        \n        # Exact\
+      \ 128-byte Preamble\n        self.preamble = bytes([\n            0xD3, 0x42,\
+      \ 0xA1, 0x7F, 0x9C, 0xE2, 0x55, 0xAA,\n            0x13, 0x87, 0x4E, 0xB1, 0x2C,\
+      \ 0xF0, 0x99, 0x6D,\n            0x3A, 0xC4, 0x1F, 0x82, 0x5B, 0xD8, 0x66, 0xE7,\n\
+      \            0x24, 0x91, 0x7C, 0x0B, 0x38, 0xF2, 0x4D, 0xC6,\n            0xD3,\
+      \ 0x42, 0xA1, 0x7F, 0x9C, 0xE2, 0x55, 0xAA,\n            0x13, 0x87, 0x4E, 0xB1,\
+      \ 0x2C, 0xF0, 0x99, 0x6D,\n            0x3A, 0xC4, 0x1F, 0x82, 0x5B, 0xD8, 0x66,\
+      \ 0xE7,\n            0x24, 0x91, 0x7C, 0x0B, 0x38, 0xF2, 0x4D, 0xC6,\n     \
+      \       0xD3, 0x42, 0xA1, 0x7F, 0x9C, 0xE2, 0x55, 0xAA,\n            0x13, 0x87,\
+      \ 0x4E, 0xB1, 0x2C, 0xF0, 0x99, 0x6D,\n            0x3A, 0xC4, 0x1F, 0x82, 0x5B,\
+      \ 0xD8, 0x66, 0xE7,\n            0x24, 0x91, 0x7C, 0x0B, 0x38, 0xF2, 0x4D, 0xC6,\n\
+      \            0xD3, 0x42, 0xA1, 0x7F, 0x9C, 0xE2, 0x55, 0xAA,\n            0x13,\
+      \ 0x87, 0x4E, 0xB1, 0x2C, 0xF0, 0x99, 0x6D,\n            0x3A, 0xC4, 0x1F, 0x82,\
+      \ 0x5B, 0xD8, 0x66, 0xE7,\n            0x24, 0x91, 0x7C, 0x0B, 0x38, 0xF2, 0x4D,\
+      \ 0xC6\n        ])\n\n        # Length of ACK Frame Content (after preamble)\n\
+      \        # Dest(1) + Type(1) + NextSeq(1) + Payload(40) + CRC(4) = 47 bytes\n\
+      \        self.ACK_CONTENT_LEN = 1 + 1 + 1 + 40 + 4 \n\n        self.message_port_register_in(pmt.intern('in'))\n\
+      \        self.message_port_register_out(pmt.intern('out'))\n        self.message_port_register_out(pmt.intern('drop'))\n\
+      \        self.message_port_register_in(pmt.intern('config'))\n\n        self.set_msg_handler(pmt.intern('in'),\
+      \ self._handle)\n        self.set_msg_handler(pmt.intern('config'), self.handle_config)\n\
+      \n    def handle_config(self, msg):\n        if pmt.is_dict(msg) and pmt.dict_has_key(msg,\
+      \ pmt.intern(\"my_addr\")):\n            new_addr = pmt.to_long(pmt.dict_ref(msg,\
+      \ pmt.intern(\"my_addr\"), pmt.PMT_NIL))\n            self.my_addr = new_addr\
+      \ & 0xFF\n\n    def _handle(self, pdu):\n        if not pmt.is_pair(pdu): return\n\
+      \        meta, pl = pmt.car(pdu), pmt.cdr(pdu)\n        if not pmt.is_u8vector(pl):\
+      \ return\n\n        data = bytes(pmt.u8vector_elements(pl))\n        \n    \
+      \    # 1. Search for Preamble\n        start_idx = data.find(self.preamble)\n\
+      \        if start_idx == -1:\n            return \n            \n        payload_idx\
+      \ = start_idx + len(self.preamble)\n\n        # Check length\n        if len(data)\
+      \ < payload_idx + self.ACK_CONTENT_LEN:\n            return\n\n        # Extract\
+      \ exactly one ACK frame\n        frame = data[payload_idx : payload_idx + self.ACK_CONTENT_LEN]\n\
+      \n        dest = frame[0]\n        msg_type = frame[1]\n\n        # 2. Check\
+      \ Address\n        if dest != self.my_addr:\n            return\n\n        #\
+      \ 3. Check Type (Must be 0x02 for ACK)\n        if msg_type != 0x02:\n     \
+      \       return \n\n        # 4. Strip Dest(1) + Type(1) -> Keep [ NEXT_SEQ |\
+      \ PAYLOAD | CRC ]\n        # Offset = 2\n        stripped = frame[2:]\n    \
+      \    \n        next_seq = stripped[0]\n\n        out_meta = meta\n        try:\n\
+      \            out_meta = pmt.dict_add(out_meta, pmt.intern(\"dest_addr\"), pmt.from_long(int(dest)))\n\
+      \            out_meta = pmt.dict_add(out_meta, pmt.intern(\"next_seq\"), pmt.from_long(int(next_seq)))\n\
+      \        except: pass\n\n        self.message_port_pub(pmt.intern('out'), pmt.cons(out_meta,\
+      \ pmt.init_u8vector(len(stripped), list(stripped))))\n\n    def _emit_drop(self,\
+      \ meta, bytes_list, reason):\n        try:\n            m = pmt.dict_add(meta,\
+      \ pmt.intern(\"drop_reason\"), pmt.intern(str(reason)))\n            v = pmt.init_u8vector(len(bytes_list),\
+      \ list(bytes_list))\n            self.message_port_pub(pmt.intern('drop'), pmt.cons(m,\
+      \ v))\n        except: pass"
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    preamble_len: '128'
+  states:
+    _io_cache: '(''Address Filter ACK'', ''ack_address_filter_rx'', [(''preamble_len'',
+      ''32'')], [(''config'', ''message'', 1), (''in'', ''message'', 1)], [(''drop'',
+      ''message'', 1), (''out'', ''message'', 1)], ''\n    Scans for [ PREAMBLE ]
+      inside the PDU.\n    Expects: [ DEST(1) | TYPE(1) | NEXT_SEQ(1) | PAYLOAD(40)
+      | CRC(4) ]\n    Accepts only if DEST == my_addr AND TYPE == 0x02\n    '', [])'
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [608, 2768.0]
+    rotation: 0
+    state: enabled
+- name: epy_block_8
+  id: epy_block
+  parameters:
+    _source_code: "from gnuradio import gr\nimport pmt\nfrom Crypto.Cipher import\
+      \ AES\n\nclass pdu_aes_decrypt(gr.basic_block):\n    \"\"\"\n    PDU AES Decrypt\
+      \ (AES-CTR)\n\n    In:\n      - PDU: (meta, payload_bytes)\n             payload\
+      \ = NONCE(8 bytes) | CIPHERTEXT\n\n    Out:\n      - PDU: same meta\n      \
+      \       payload = PLAINTEXT\n\n    Parameters:\n      key_hex : same key as\
+      \ encrypt block\n      verbose : print debug\n    \"\"\"\n\n    def __init__(self,\
+      \ key_hex=\"00112233445566778899AABBCCDDEEFF\", verbose=True):\n        gr.basic_block.__init__(self,\n\
+      \                                name=\"PDU AES Decrypt (CTR)\",\n         \
+      \                       in_sig=None,\n                                out_sig=None)\n\
+      \n        self.verbose = bool(verbose)\n        self.set_key_hex(key_hex)\n\n\
+      \        self.message_port_register_in(pmt.intern(\"in\"))\n        self.message_port_register_out(pmt.intern(\"\
+      out\"))\n        self.set_msg_handler(pmt.intern(\"in\"), self._handle_msg)\n\
+      \n    def _log(self, msg):\n        if self.verbose:\n            print(f\"\
+      [pdu_aes_decrypt] {msg}\")\n\n    # ---- key handling ----\n    def set_key_hex(self,\
+      \ key_hex):\n        key_hex = key_hex.replace(\" \", \"\")\n        try:\n\
+      \            key = bytes.fromhex(key_hex)\n        except ValueError:\n    \
+      \        raise ValueError(\"key_hex must be valid hex\")\n\n        if len(key)\
+      \ not in (16, 24, 32):\n            raise ValueError(\"AES key must be 16, 24,\
+      \ or 32 bytes (32/48/64 hex chars)\")\n\n        self._key = key\n        self._log(f\"\
+      Key set ({len(key)} bytes)\")\n\n    # ---- message handler ----\n    def _handle_msg(self,\
+      \ pdu):\n        if not pmt.is_pair(pdu):\n            return\n\n        meta\
+      \ = pmt.car(pdu)\n        pl   = pmt.cdr(pdu)\n\n        if not pmt.is_u8vector(pl):\n\
+      \            self._log(\"Ignoring non-u8vector payload\")\n            return\n\
+      \n        data = bytes(pmt.u8vector_elements(pl))\n        if len(data) < 8:\n\
+      \            self._log(\"Payload too short (no nonce)\")\n            return\n\
+      \n        nonce = data[:8]\n        ciphertext = data[8:]\n\n        cipher\
+      \ = AES.new(self._key, AES.MODE_CTR, nonce=nonce)\n        plaintext = cipher.decrypt(ciphertext)\n\
+      \n        payload_pmt = pmt.init_u8vector(len(plaintext), list(plaintext))\n\
+      \        out_pdu = pmt.cons(meta, payload_pmt)\n        self.message_port_pub(pmt.intern(\"\
+      out\"), out_pdu)\n\n        self._log(f\"Decrypted PDU: in_len={len(data)},\
+      \ out_len={len(plaintext)}\")\n"
+    affinity: ''
+    alias: ''
+    comment: ''
+    key_hex: aes_key
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    verbose: 'False'
+  states:
+    _io_cache: '(''PDU AES Decrypt (CTR)'', ''pdu_aes_decrypt'', [(''key_hex'', "''00112233445566778899AABBCCDDEEFF''"),
+      (''verbose'', ''True'')], [(''in'', ''message'', 1)], [(''out'', ''message'',
+      1)], ''\n    PDU AES Decrypt (AES-CTR)\n\n    In:\n      - PDU: (meta, payload_bytes)\n             payload
+      = NONCE(8 bytes) | CIPHERTEXT\n\n    Out:\n      - PDU: same meta\n             payload
+      = PLAINTEXT\n\n    Parameters:\n      key_hex : same key as encrypt block\n      verbose
+      : print debug\n    '', [''verbose''])'
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [944, 1680.0]
+    rotation: 0
+    state: disabled
+- name: pdu_pdu_to_tagged_stream_0
+  id: pdu_pdu_to_tagged_stream
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    tag: packet_len
+    type: byte
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1416, 472.0]
+    rotation: 0
+    state: enabled
+- name: pdu_pdu_to_tagged_stream_1
+  id: pdu_pdu_to_tagged_stream
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    tag: packet_len
+    type: byte
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1424, 536.0]
+    rotation: 0
+    state: enabled
+- name: pdu_tagged_stream_to_pdu_0
+  id: pdu_tagged_stream_to_pdu
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    tag: packet_len
+    type: byte
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [272, 1640.0]
+    rotation: 0
+    state: enabled
+- name: pdu_tagged_stream_to_pdu_0_0
+  id: pdu_tagged_stream_to_pdu
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    tag: packet_len
+    type: byte
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [328, 2776.0]
+    rotation: 0
+    state: enabled
+- name: qtgui_const_sink_x_0_0
+  id: qtgui_const_sink_x
+  parameters:
+    affinity: ''
+    alias: ''
+    alpha1: '1.0'
+    alpha10: '1.0'
+    alpha2: '1.0'
+    alpha3: '1.0'
+    alpha4: '1.0'
+    alpha5: '1.0'
+    alpha6: '1.0'
+    alpha7: '1.0'
+    alpha8: '1.0'
+    alpha9: '1.0'
+    autoscale: 'False'
+    axislabels: 'True'
+    color1: '"blue"'
+    color10: '"dark blue"'
+    color2: '"red"'
+    color3: '"green"'
+    color4: '"black"'
+    color5: '"cyan"'
+    color6: '"magenta"'
+    color7: '"yellow"'
+    color8: '"dark red"'
+    color9: '"dark green"'
+    comment: ''
+    grid: 'False'
+    gui_hint: ''
+    label1: ''
+    label10: ''
+    label2: ''
+    label3: ''
+    label4: ''
+    label5: ''
+    label6: ''
+    label7: ''
+    label8: ''
+    label9: ''
+    legend: 'True'
+    marker1: '0'
+    marker10: '0'
+    marker2: '0'
+    marker3: '0'
+    marker4: '0'
+    marker5: '0'
+    marker6: '0'
+    marker7: '0'
+    marker8: '0'
+    marker9: '0'
+    name: '"ACK / AFTER SYNC"'
+    nconnections: '1'
+    size: '1024'
+    style1: '0'
+    style10: '0'
+    style2: '0'
+    style3: '0'
+    style4: '0'
+    style5: '0'
+    style6: '0'
+    style7: '0'
+    style8: '0'
+    style9: '0'
+    tr_chan: '0'
+    tr_level: '0.0'
+    tr_mode: qtgui.TRIG_MODE_FREE
+    tr_slope: qtgui.TRIG_SLOPE_POS
+    tr_tag: '""'
+    type: complex
+    update_time: '0.10'
+    width1: '1'
+    width10: '1'
+    width2: '1'
+    width3: '1'
+    width4: '1'
+    width5: '1'
+    width6: '1'
+    width7: '1'
+    width8: '1'
+    width9: '1'
+    xmax: '2'
+    xmin: '-2'
+    ymax: '2'
+    ymin: '-2'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1576, 2112.0]
+    rotation: 0
+    state: enabled
+- name: qtgui_const_sink_x_1
+  id: qtgui_const_sink_x
+  parameters:
+    affinity: ''
+    alias: ''
+    alpha1: '1.0'
+    alpha10: '1.0'
+    alpha2: '1.0'
+    alpha3: '1.0'
+    alpha4: '1.0'
+    alpha5: '1.0'
+    alpha6: '1.0'
+    alpha7: '1.0'
+    alpha8: '1.0'
+    alpha9: '1.0'
+    autoscale: 'False'
+    axislabels: 'True'
+    color1: '"blue"'
+    color10: '"dark blue"'
+    color2: '"red"'
+    color3: '"green"'
+    color4: '"black"'
+    color5: '"cyan"'
+    color6: '"magenta"'
+    color7: '"yellow"'
+    color8: '"dark red"'
+    color9: '"dark green"'
+    comment: ''
+    grid: 'False'
+    gui_hint: ''
+    label1: ''
+    label10: ''
+    label2: ''
+    label3: ''
+    label4: ''
+    label5: ''
+    label6: ''
+    label7: ''
+    label8: ''
+    label9: ''
+    legend: 'True'
+    marker1: '0'
+    marker10: '0'
+    marker2: '0'
+    marker3: '0'
+    marker4: '0'
+    marker5: '0'
+    marker6: '0'
+    marker7: '0'
+    marker8: '0'
+    marker9: '0'
+    name: '"TRANSMITER"'
+    nconnections: '1'
+    size: '1024'
+    style1: '0'
+    style10: '0'
+    style2: '0'
+    style3: '0'
+    style4: '0'
+    style5: '0'
+    style6: '0'
+    style7: '0'
+    style8: '0'
+    style9: '0'
+    tr_chan: '0'
+    tr_level: '0.0'
+    tr_mode: qtgui.TRIG_MODE_FREE
+    tr_slope: qtgui.TRIG_SLOPE_POS
+    tr_tag: '""'
+    type: complex
+    update_time: '0.10'
+    width1: '1'
+    width10: '1'
+    width2: '1'
+    width3: '1'
+    width4: '1'
+    width5: '1'
+    width6: '1'
+    width7: '1'
+    width8: '1'
+    width9: '1'
+    xmax: '2'
+    xmin: '-2'
+    ymax: '2'
+    ymin: '-2'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [616, 964.0]
+    rotation: 0
+    state: enabled
+- name: qtgui_freq_sink_x_0
+  id: qtgui_freq_sink_x
+  parameters:
+    affinity: ''
+    alias: ''
+    alpha1: '1.0'
+    alpha10: '1.0'
+    alpha2: '1.0'
+    alpha3: '1.0'
+    alpha4: '1.0'
+    alpha5: '1.0'
+    alpha6: '1.0'
+    alpha7: '1.0'
+    alpha8: '1.0'
+    alpha9: '1.0'
+    autoscale: 'False'
+    average: '1.0'
+    axislabels: 'True'
+    bw: samp_rate
+    color1: '"blue"'
+    color10: '"dark blue"'
+    color2: '"red"'
+    color3: '"green"'
+    color4: '"black"'
+    color5: '"cyan"'
+    color6: '"magenta"'
+    color7: '"yellow"'
+    color8: '"dark red"'
+    color9: '"dark green"'
+    comment: ''
+    ctrlpanel: 'False'
+    fc: '0'
+    fftsize: '1024'
+    freqhalf: 'True'
+    grid: 'False'
+    gui_hint: ''
+    label: Relative Gain
+    label1: ''
+    label10: ''''''
+    label2: ''''''
+    label3: ''''''
+    label4: ''''''
+    label5: ''''''
+    label6: ''''''
+    label7: ''''''
+    label8: ''''''
+    label9: ''''''
+    legend: 'True'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    name: '""'
+    nconnections: '1'
+    norm_window: 'False'
+    showports: 'False'
+    tr_chan: '0'
+    tr_level: '0.0'
+    tr_mode: qtgui.TRIG_MODE_FREE
+    tr_tag: '""'
+    type: complex
+    units: dB
+    update_time: '0.10'
+    width1: '1'
+    width10: '1'
+    width2: '1'
+    width3: '1'
+    width4: '1'
+    width5: '1'
+    width6: '1'
+    width7: '1'
+    width8: '1'
+    width9: '1'
+    wintype: window.WIN_BLACKMAN_hARRIS
+    ymax: '10'
+    ymin: '-140'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [608, 1136.0]
+    rotation: 0
+    state: enabled
+- name: qtgui_time_sink_x_0
+  id: qtgui_time_sink_x
+  parameters:
+    affinity: ''
+    alias: ''
+    alpha1: '1.0'
+    alpha10: '1.0'
+    alpha2: '1.0'
+    alpha3: '1.0'
+    alpha4: '1.0'
+    alpha5: '1.0'
+    alpha6: '1.0'
+    alpha7: '1.0'
+    alpha8: '1.0'
+    alpha9: '1.0'
+    autoscale: 'False'
+    axislabels: 'True'
+    color1: blue
+    color10: dark blue
+    color2: red
+    color3: green
+    color4: black
+    color5: cyan
+    color6: magenta
+    color7: yellow
+    color8: dark red
+    color9: dark green
+    comment: 1,2,1,2
+    ctrlpanel: 'False'
+    entags: 'True'
+    grid: 'False'
+    gui_hint: 1,2,1,2
+    label1: ''
+    label10: ''
+    label2: ''
+    label3: ''
+    label4: ''
+    label5: ''
+    label6: ''
+    label7: ''
+    label8: ''
+    label9: ''
+    legend: 'True'
+    marker1: '-1'
+    marker10: '-1'
+    marker2: '-1'
+    marker3: '-1'
+    marker4: '-1'
+    marker5: '-1'
+    marker6: '-1'
+    marker7: '-1'
+    marker8: '-1'
+    marker9: '-1'
+    name: ''
+    nconnections: '1'
+    size: '64'
+    srate: samp_rate
+    stemplot: 'False'
+    style1: '1'
+    style10: '1'
+    style2: '1'
+    style3: '1'
+    style4: '1'
+    style5: '1'
+    style6: '1'
+    style7: '1'
+    style8: '1'
+    style9: '1'
+    tr_chan: '0'
+    tr_delay: '0'
+    tr_level: '0.0'
+    tr_mode: qtgui.TRIG_MODE_AUTO
+    tr_slope: qtgui.TRIG_SLOPE_POS
+    tr_tag: '""'
+    type: float
+    update_time: '0.10'
+    width1: '1'
+    width10: '1'
+    width2: '1'
+    width3: '1'
+    width4: '1'
+    width5: '1'
+    width6: '1'
+    width7: '1'
+    width8: '1'
+    width9: '1'
+    ylabel: Amplitude
+    ymax: '2'
+    ymin: '-2'
+    yunit: '""'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [2872, 2096.0]
+    rotation: 0
+    state: enabled
+- name: virtual_sink_0
+  id: virtual_sink
+  parameters:
+    alias: ''
+    comment: ''
+    stream_id: channel_tx
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1960, 504.0]
+    rotation: 0
+    state: enabled
+- name: virtual_sink_0_1_0_0
+  id: virtual_sink
+  parameters:
+    alias: ''
+    comment: ''
+    stream_id: r4
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [2256, 2232.0]
+    rotation: 0
+    state: enabled
+- name: virtual_sink_1
+  id: virtual_sink
+  parameters:
+    alias: ''
+    comment: ''
+    stream_id: ack_1
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1512, 1608.0]
+    rotation: 0
+    state: enabled
+- name: virtual_sink_1_0
+  id: virtual_sink
+  parameters:
+    alias: ''
+    comment: ''
+    stream_id: out1
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [3280, 2232.0]
+    rotation: 0
+    state: enabled
+- name: virtual_sink_3
+  id: virtual_sink
+  parameters:
+    alias: ''
+    comment: ''
+    stream_id: r3
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [984, 2168.0]
+    rotation: 0
+    state: enabled
+- name: virtual_sink_4
+  id: virtual_sink
+  parameters:
+    alias: ''
+    comment: ''
+    stream_id: ack
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1120, 2808.0]
+    rotation: 0
+    state: enabled
+- name: virtual_sink_6
+  id: virtual_sink
+  parameters:
+    alias: ''
+    comment: ''
+    stream_id: msg_out
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [984, 1768.0]
+    rotation: 180
+    state: enabled
+- name: virtual_sink_7
+  id: virtual_sink
+  parameters:
+    alias: ''
+    comment: ''
+    stream_id: config
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [544, 632.0]
+    rotation: 0
+    state: enabled
+- name: virtual_source_0
+  id: virtual_source
+  parameters:
+    alias: ''
+    comment: ''
+    stream_id: channel_tx
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [88, 1064.0]
+    rotation: 0
+    state: enabled
+- name: virtual_source_0_0_0_0
+  id: virtual_source
+  parameters:
+    alias: ''
+    comment: ''
+    stream_id: r3
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1112, 2248.0]
+    rotation: 0
+    state: enabled
+- name: virtual_source_1
+  id: virtual_source
+  parameters:
+    alias: ''
+    comment: ''
+    stream_id: ack_1
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1128, 576.0]
+    rotation: 180
+    state: enabled
+- name: virtual_source_1_0
+  id: virtual_source
+  parameters:
+    alias: ''
+    comment: ''
+    stream_id: r4
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [2408, 2232.0]
+    rotation: 0
+    state: true
+- name: virtual_source_2
+  id: virtual_source
+  parameters:
+    alias: ''
+    comment: ''
+    stream_id: out1
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [88, 1640.0]
+    rotation: 0
+    state: enabled
+- name: virtual_source_2_0
+  id: virtual_source
+  parameters:
+    alias: ''
+    comment: ''
+    stream_id: out1
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [136, 2776.0]
+    rotation: 0
+    state: enabled
+- name: virtual_source_4
+  id: virtual_source
+  parameters:
+    alias: ''
+    comment: ''
+    stream_id: ack
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [80, 488.0]
+    rotation: 0
+    state: enabled
+- name: virtual_source_5
+  id: virtual_source
+  parameters:
+    alias: ''
+    comment: ''
+    stream_id: msg_out
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [848, 728.0]
+    rotation: 180
+    state: enabled
+- name: virtual_source_6
+  id: virtual_source
+  parameters:
+    alias: ''
+    comment: ''
+    stream_id: ack
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [864, 680.0]
+    rotation: 180
+    state: enabled
+- name: virtual_source_6_0
+  id: virtual_source
+  parameters:
+    alias: ''
+    comment: ''
+    stream_id: ack
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [272, 392.0]
+    rotation: 180
+    state: enabled
+- name: virtual_source_7
+  id: virtual_source
+  parameters:
+    alias: ''
+    comment: ''
+    stream_id: config
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [616, 568.0]
+    rotation: 0
+    state: enabled
+- name: virtual_source_8_0
+  id: virtual_source
+  parameters:
+    alias: ''
+    comment: ''
+    stream_id: config
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1272, 1688.0]
+    rotation: 180
+    state: enabled
+- name: virtual_source_8_1
+  id: virtual_source
+  parameters:
+    alias: ''
+    comment: ''
+    stream_id: config
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [528, 1704.0]
+    rotation: 180
+    state: enabled
+- name: virtual_source_8_1_0
+  id: virtual_source
+  parameters:
+    alias: ''
+    comment: ''
+    stream_id: config
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [600, 2856.0]
+    rotation: 180
+    state: enabled
+- name: zeromq_pub_sink_0
+  id: zeromq_pub_sink
+  parameters:
+    address: tcp://127.0.0.2:5555
+    affinity: ''
+    alias: ''
+    bind: 'True'
+    comment: ''
+    drop_on_hwm: 'True'
+    hwm: '-1'
+    key: ''
+    pass_tags: 'True'
+    timeout: '100'
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1064, 1056.0]
+    rotation: 0
+    state: enabled
+- name: zeromq_sub_source_1
+  id: zeromq_sub_source
+  parameters:
+    address: tcp://127.0.0.1:5555
+    affinity: ''
+    alias: ''
+    bind: 'False'
+    comment: ''
+    hwm: '-1'
+    key: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    pass_tags: 'True'
+    timeout: '100'
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [64, 2208.0]
+    rotation: 0
+    state: enabled
+
+connections:
+- [blocks_char_to_float_0_0, '0', qtgui_time_sink_x_0, '0']
+- [blocks_multiply_const_vxx_0, '0', blocks_throttle2_1, '0']
+- [blocks_repack_bits_bb_0_0, '0', virtual_sink_1_0, '0']
+- [blocks_tagged_stream_mux_0, '0', virtual_sink_0, '0']
+- [blocks_throttle2_1, '0', zeromq_pub_sink_0, '0']
+- [blocks_unpack_k_bits_bb_0_0, '0', blocks_char_to_float_0_0, '0']
+- [blocks_unpack_k_bits_bb_0_0, '0', digital_correlate_access_code_xx_ts_0_0, '0']
+- [digital_constellation_decoder_cb_0_0, '0', digital_diff_decoder_bb_0_0, '0']
+- [digital_constellation_modulator_0, '0', blocks_multiply_const_vxx_0, '0']
+- [digital_constellation_modulator_0, '0', qtgui_const_sink_x_1, '0']
+- [digital_constellation_modulator_0, '0', qtgui_freq_sink_x_0, '0']
+- [digital_correlate_access_code_xx_ts_0_0, '0', blocks_repack_bits_bb_0_0, '0']
+- [digital_costas_loop_cc_0_0, '0', digital_constellation_decoder_cb_0_0, '0']
+- [digital_costas_loop_cc_0_0, '0', qtgui_const_sink_x_0_0, '0']
+- [digital_crc_append_0, out, epy_block_0_0, in]
+- [digital_crc_append_0_0, out, epy_block_1_0, in]
+- [digital_diff_decoder_bb_0_0, '0', digital_map_bb_0_0, '0']
+- [digital_linear_equalizer_0_0, '0', virtual_sink_3, '0']
+- [digital_map_bb_0_0, '0', virtual_sink_0_1_0_0, '0']
+- [digital_protocol_formatter_async_0, header, pdu_pdu_to_tagged_stream_0, pdus]
+- [digital_protocol_formatter_async_0, payload, pdu_pdu_to_tagged_stream_1, pdus]
+- [digital_symbol_sync_xx_0_0, '0', digital_linear_equalizer_0_0, '0']
+- [epy_block_0_0, out, digital_protocol_formatter_async_0, in]
+- [epy_block_0_1, config_out, virtual_sink_7, '0']
+- [epy_block_0_1, out, epy_block_10, in]
+- [epy_block_0_1, out, epy_block_4, in]
+- [epy_block_10, out, digital_crc_append_0, in]
+- [epy_block_11, ack_out, digital_crc_append_0_0, in]
+- [epy_block_11, out, epy_block_8, in]
+- [epy_block_11, out, virtual_sink_6, '0']
+- [epy_block_12, ack_out, virtual_sink_4, '0']
+- [epy_block_1_0, out, virtual_sink_1, '0']
+- [epy_block_2, out, epy_block_11, in]
+- [epy_block_4, out, epy_block_10, in]
+- [epy_block_6, out, blocks_message_debug_0, print]
+- [epy_block_6, out, epy_block_12, in]
+- [epy_block_8, out, epy_block_5, in]
+- [epy_block_8, out, virtual_sink_6, '0']
+- [pdu_pdu_to_tagged_stream_0, '0', blocks_tagged_stream_mux_0, '0']
+- [pdu_pdu_to_tagged_stream_1, '0', blocks_tagged_stream_mux_0, '1']
+- [pdu_tagged_stream_to_pdu_0, pdus, epy_block_2, in]
+- [pdu_tagged_stream_to_pdu_0_0, pdus, epy_block_6, in]
+- [virtual_source_0, '0', digital_constellation_modulator_0, '0']
+- [virtual_source_0_0_0_0, '0', digital_costas_loop_cc_0_0, '0']
+- [virtual_source_1, '0', digital_protocol_formatter_async_0, in]
+- [virtual_source_1_0, '0', blocks_unpack_k_bits_bb_0_0, '0']
+- [virtual_source_2, '0', pdu_tagged_stream_to_pdu_0, '0']
+- [virtual_source_2_0, '0', pdu_tagged_stream_to_pdu_0_0, '0']
+- [virtual_source_4, '0', epy_block_10, ack_in]
+- [virtual_source_5, '0', epy_block_0_1, in]
+- [virtual_source_6, '0', epy_block_0_1, ack_in]
+- [virtual_source_6_0, '0', epy_block_10, busy_in]
+- [virtual_source_7, '0', epy_block_0_0, config]
+- [virtual_source_8_0, '0', epy_block_1_0, config]
+- [virtual_source_8_1, '0', epy_block_2, config]
+- [virtual_source_8_1_0, '0', epy_block_6, config]
+- [zeromq_sub_source_1, '0', digital_symbol_sync_xx_0_0, '0']
+
+metadata:
+  file_format: 1
+  grc_version: 3.10.11.0
